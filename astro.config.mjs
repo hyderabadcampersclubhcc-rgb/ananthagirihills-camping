@@ -11,6 +11,8 @@ const site = process.env.SITE_URL || `https://${productionHost}`;
 
 export default defineConfig({
   site,
+  // Set only for the GitHub Pages preview, which serves the site from /<repo>/.
+  base: process.env.BASE_PATH || '/',
   trailingSlash: 'always',
   build: { format: 'directory', inlineStylesheets: 'auto' },
   prefetch: { defaultStrategy: 'hover' },
