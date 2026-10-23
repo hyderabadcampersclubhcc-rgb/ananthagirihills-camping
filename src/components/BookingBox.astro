@@ -1,0 +1,149 @@
+---
+/**
+ * Booking request: date, guests and name, sent as a prefilled WhatsApp message.
+ * No online payment: the team confirms availability and shares payment details on WhatsApp.
+ */
+import { inr } from '@/lib/url';
+import { CONFIRM, whatsappLink } from '@/lib/whatsapp';
+
+interface Props {
+  title: string;
+  price: number;
+  advance?: number;
+  runs: string;
+}
+
+const { title, price, advance, runs } = Astro.props;
+const fallback = whatsappLink(`Hi, I want to book ${title}.`);
+---
+
+<form class="booking" data-booking data-title={title} data-price={price} data-advance={advance ?? ''} action={fallback}>
+  <p class="price booking__price"><span>From</span> <strong>{inr(price)}</strong> <span>/person</span></p>
+  <p class="booking__runs">{runs}</p>
+
+  <label>
+    Date
+    <input type="date" name="date" required />
+  </label>
+  <label>
+    Guests
+    <input type="number" name="guests" min="1" max="50" value="2" required inputmode="numeric" />
+  </label>
+  <label>
+    Your name
+    <input type="text" name="name" autocomplete="name" required />
+  </label>
+
+  <dl class="booking__sum">
+    <div><dt>Total</dt><dd data-total>{inr(price * 2)}</dd></div>
+    <div>
+      <dt>Advance to reserve</dt>
+      <dd data-advance-out>{advance ? inr(advance * 2) : <a href={whatsappLink(`Hi, what is the advance for ${title}?`)} target="_blank" rel="noopener">{CONFIRM}</a>}</dd>
+    </div>
+  </dl>
+
+  <button class="btn" type="submit">Check availability on WhatsApp</button>
+  <p class="booking__note">No payment now. We confirm availability and share payment details on WhatsApp.</p>
+</form>
+
+<script>
+  const inr = (n: number) => `₹${n.toLocaleString('en-IN')}`;
+  for (const form of document.querySelectorAll<HTMLFormElement>('[data-booking]')) {
+    const { title, price, advance } = form.dataset;
+    const total = form.querySelector('[data-total]')!;
+    const adv = form.querySelector('[data-advance-out]')!;
+    const guests = form.elements.namedItem('guests') as HTMLInputElement;
+    const date = form.elements.namedItem('date') as HTMLInputElement;
+    date.min = new Date().toISOString().slice(0, 10);
+
+    const update = () => {
+      const n = Math.max(1, Number(guests.value) || 1);
+      total.textContent = inr(n * Number(price));
+      if (advance) adv.textContent = inr(n * Number(advance));
+    };
+    guests.addEventListener('input', update);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const n = Math.max(1, Number(data.get('guests')) || 1);
+      const day = new Date(`${data.get('date')}T00:00`).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+      const message = [
+        `Hi, I want to book ${title}.`,
+        `Date: ${day}`,
+        `Guests: ${n}`,
+        `Name: ${data.get('name')}`,
+        `Total: ${inr(n * Number(price))}`,
+        'Please confirm availability.',
+      ].join('\n');
+      window.open(`${form.action.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+    });
+  }
+</script>
+
+<style>
+  .booking {
+    display: grid;
+    gap: 0.85rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px rgb(31 42 36 / 0.08);
+  }
+  .booking__price {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .booking__runs {
+    margin: -0.5rem 0 0;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+  label {
+    display: grid;
+    gap: 0.3rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  input {
+    font: inherit;
+    font-weight: 400;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--color-text);
+    width: 100%;
+  }
+  .booking__sum {
+    margin: 0;
+    display: grid;
+    gap: 0.4rem;
+    padding: 0.75rem 0;
+    border-block: 1px solid var(--color-line);
+    font-size: 0.92rem;
+  }
+  .booking__sum div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  dt {
+    color: var(--color-muted);
+  }
+  dd {
+    margin: 0;
+    font-weight: 600;
+    text-align: right;
+  }
+  dd a {
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+  .booking__note {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+</style>

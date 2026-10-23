@@ -1,30 +1,294 @@
 ---
-// Placeholder until the design and content phases are approved by the owner.
+import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Photo from '@/components/Photo.astro';
+import PackageCard from '@/components/PackageCard.astro';
+import CompareTable from '@/components/CompareTable.astro';
+import Faq from '@/components/Faq.astro';
+import Rich from '@/components/Rich.astro';
+import { inr } from '@/lib/url';
+import { whatsappLink } from '@/lib/whatsapp';
+
+const packages = (await getCollection('packages')).sort((a, b) => a.data.order - b.data.order);
+const from = Math.min(...packages.map((p) => p.data.price));
+
+const night = [
+  ['Arrive in the afternoon', 'Check-in is in the afternoon; the time depends on the campsite. For your campsite, Contact us on WhatsApp to confirm. You reach the campsite yourself.'],
+  ['Evening', 'Tea and snacks, the campsite’s activities, a bonfire or campfire after dark, then dinner.'],
+  ['Night', 'Tents for 2 or 3 people, depending on the campsite.'],
+  ['Morning', 'Breakfast (and a sunrise trek at Trance Veechika), then check-out at 11 am.'],
+];
+
+const faqs = [
+  { q: 'Where can I go camping near Hyderabad?', a: 'Our camps are in the Ananthagiri Hills near Vikarabad, about 80 km from Hyderabad: budget camping, Harivillu Resort, the lakeside campsite at Sarpanpally Lake, and Trance Veechika Resort.' },
+  { q: 'How much does camping near Hyderabad cost?', a: "One price per person for a night with meals: ₹1,600 for budget camping, ₹2,000 at Harivillu Resort, ₹2,000 at Sarpanpally Lake and ₹2,999 for premium camping at Trance Veechika. Each camp page lists exactly what's included." },
+  { q: 'Is transport included?', a: 'No. You reach the campsite yourself: drive (about 2 to 2.5 hours), or take a train or bus to Vikarabad and an auto or cab from there.' },
+  { q: 'Are the tents shared?', a: 'Yes. Tents are for 2 or 3 people, depending on the campsite. Ask us on WhatsApp if you have a specific request.' },
+  { q: 'What is included in a camping night?', a: 'At all four campsites: a tent for the night, evening tea, dinner and breakfast, and a bonfire or campfire. Activities differ by campsite, from a pool and DJ night to a rope course, lakeside games or a sunrise trek.' },
+  { q: 'When is the best time to camp near Hyderabad?', a: 'July to February is the best time for the Ananthagiri Hills: green after the monsoon, with cooler nights. Harivillu, Sarpanpally Lake and Trance Veechika run on Saturdays; check availability for any date with us on WhatsApp.' },
+  { q: 'Can I go camping near Hyderabad without a car?', a: 'Yes. Take the 12702 from Nampally or the 12732 from Secunderabad to Vikarabad, or a TSRTC bus, then an auto or cab to the campsite.' },
+  { q: 'Is camping suitable for families and first-timers?', a: 'Yes. These are organised campsites with tents, meals and washrooms, not wild camping.' },
+];
 ---
 
 <BaseLayout
-  title="Camping in Ananthagiri Hills near Hyderabad"
-  description="Overnight camping packages in the Ananthagiri Hills near Vikarabad. Website coming soon."
+  title="Camping near Hyderabad | Ananthagiri Hills camping from ₹1,600"
+  description="Overnight camping in the Ananthagiri Hills near Vikarabad, about two hours from Hyderabad. Four campsites with tents, meals and bonfire, from ₹1,600 per person."
 >
   <main>
-    <h1>Camping in Ananthagiri Hills near Hyderabad</h1>
-    <p>Our new website is being built. Camping packages, prices and booking details will appear here soon.</p>
+    <section class="hero">
+      <Photo name="campfire" sizes="100vw" loading="eager" class="hero__photo" />
+      <div class="wrap hero__inner">
+        <p class="hero__kicker">Ananthagiri Hills · Vikarabad</p>
+        <h1>Camping near Hyderabad</h1>
+        <p class="hero__lead">
+          Overnight camping in the Ananthagiri Hills near Vikarabad, about two hours from Hyderabad. Choose from four campsites: a pool
+          and Saturday DJ night, an activity camp with a rope course, lakeside tents at Sarpanpally Lake, or a premium camp with a
+          sunrise trek.
+        </p>
+        <ul class="hero__facts">
+          <li><strong>4</strong> campsites</li>
+          <li>From <strong>{inr(from)}</strong> /person</li>
+          <li><strong>1N / 2D</strong> with meals</li>
+        </ul>
+        <div class="hero__cta">
+          <a class="btn" href="#packages">See camping packages</a>
+          <a class="btn btn--light" href={whatsappLink('Hi, I want to check camping availability in Ananthagiri Hills.')} target="_blank" rel="noopener">
+            Check availability
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap section" id="packages" aria-labelledby="packages-h">
+      <h2 id="packages-h">Four campsites in the Ananthagiri Hills</h2>
+      <p class="lead">Each campsite has one price per person, including the tent, evening tea, dinner and breakfast. You travel to the campsite on your own.</p>
+      <div class="grid">{packages.map((p) => <PackageCard pkg={p} />)}</div>
+    </section>
+
+    <section class="wrap section" id="compare" aria-labelledby="compare-h">
+      <h2 id="compare-h">Compare the campsites</h2>
+      <p class="lead">Check-in times, meals and activities side by side.</p>
+      <CompareTable />
+    </section>
+
+    <section class="wrap section" aria-labelledby="night-h">
+      <h2 id="night-h">How a camping night works</h2>
+      <ol class="steps">
+        {
+          night.map(([title, text], i) => (
+            <li>
+              <span class="steps__n">{i + 1}</span>
+              <h3>{title}</h3>
+              <p><Rich text={text} topic="camping check-in times" /></p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section class="wrap section split" aria-labelledby="when-h">
+      <div>
+        <h2 id="when-h">When to go</h2>
+        <p>
+          July to February is the best time for the Ananthagiri Hills: green after the monsoon, with cooler nights. Most of the camps
+          run on Saturdays, so you need no leave. Check availability for your date on WhatsApp before you travel.
+        </p>
+        <h2>Getting there</h2>
+        <p>
+          Ananthagiri Hills is near Vikarabad, about 80 km from Hyderabad, roughly 2 to 2.5 hours by road. Without a car, take train
+          12702 from Nampally (2:55 pm, also stopping at Begumpet and Lingampalli) or train 12732 from Secunderabad (4:00 pm) to
+          Vikarabad, or a TSRTC bus, then an auto or cab to your campsite.
+        </p>
+      </div>
+      <Photo name="ananthagiri" sizes="(min-width: 860px) 45vw, 100vw" class="split__photo" />
+    </section>
+
+    <section class="wrap section two" aria-label="Packing and camp rules">
+      <div class="panel">
+        <h2>What to carry</h2>
+        <ul class="ticks">
+          <li>A government photo ID for every guest</li>
+          <li>Comfortable clothes and trekking or sports shoes</li>
+          <li>A torch, and a light jacket or hoodie for the night</li>
+          <li>Swimwear or an extra set of clothes if your camp has a pool</li>
+          <li>Personal medicines and toiletries</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Camp rules to know</h2>
+        <ul class="ticks">
+          <li>Arrive on time; late arrivals may miss meals and activities.</li>
+          <li>Drugs, illegal activity and nuisance aren’t tolerated. Anyone breaking camp rules is asked to leave without a refund.</li>
+          <li>Keep valuables with you.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wrap section" id="faq" aria-labelledby="faq-h">
+      <h2 id="faq-h">Questions about camping near Hyderabad</h2>
+      <Faq faqs={faqs} topic="camping near Hyderabad" />
+    </section>
+
+    <section class="wrap section">
+      <div class="band">
+        <h2>Not sure which one to pick?</h2>
+        <p>Tell us your dates and what you enjoy. A real person will suggest the right campsite.</p>
+        <a class="btn btn--light" href={whatsappLink('Hi, which camping package would suit us?')} target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+    </section>
   </main>
 </BaseLayout>
 
 <style>
-  main {
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: 4rem 1rem;
+  .hero {
+    position: relative;
+    color: #fff;
+    min-height: 34rem;
+    display: flex;
+    align-items: flex-end;
+  }
+  .hero :global(.hero__photo) {
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(10 20 15 / 0.25) 0%, rgb(10 20 15 / 0.8) 75%);
+    pointer-events: none;
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+  .hero__kicker {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #cfe3d6;
   }
   h1 {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    line-height: 1.2;
-    color: var(--color-accent);
+    font-size: clamp(2.2rem, 7vw, 3.75rem);
+    margin: 0.4rem 0 0.75rem;
   }
-  p {
+  .hero__lead {
+    max-width: 40rem;
+    margin: 0;
+    color: #e8efe9;
+  }
+  .hero__facts {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    color: #e8efe9;
+  }
+  .hero__facts strong {
+    color: #fff;
+  }
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .steps li {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+  }
+  .steps__n {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--color-sand);
+    color: var(--color-accent-dark);
+    font-weight: 700;
+  }
+  .steps h3 {
+    margin: 0.6rem 0 0.3rem;
+    font-size: 1.05rem;
+  }
+  .steps p {
+    margin: 0;
     color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+  .split {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .split p {
+    color: var(--color-muted);
+    margin: 0 0 2rem;
+  }
+  .split :global(.split__photo) {
+    aspect-ratio: 4 / 3;
+  }
+  .two {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .panel {
+    background: var(--color-sand);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .panel h2 {
+    font-size: 1.3rem;
+  }
+  .band {
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 2.25rem 1.5rem;
+    text-align: center;
+  }
+  .band p {
+    margin: 0 auto 1.25rem;
+    max-width: 36rem;
+    color: #e3efe8;
+  }
+  @media (min-width: 600px) {
+    .grid,
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 860px) {
+    .split,
+    .two {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1040px) {
+    .grid,
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 </style>

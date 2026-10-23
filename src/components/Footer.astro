@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import site from '@/data/site.json';
+import { url } from '@/lib/url';
+import { whatsappLink } from '@/lib/whatsapp';
+
+const packages = (await getCollection('packages')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div>
+      <p class="footer__brand">{site.name}</p>
+      <p>Overnight camping in the Ananthagiri Hills near Vikarabad, about two hours from Hyderabad. Run by {site.operator}.</p>
+      <p>
+        <a href={whatsappLink('Hi, I have a question about camping in Ananthagiri Hills.')} target="_blank" rel="noopener">WhatsApp</a>
+        · <a href={site.phoneHref}>{site.phone}</a>
+      </p>
+    </div>
+    <div>
+      <p class="footer__head">Camping packages</p>
+      <ul>
+        {packages.map((p) => <li><a href={url(`packages/${p.id}/`)}>{p.data.title}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <p class="footer__head">Information</p>
+      <ul>
+        <li><a href={url('#compare')}>Compare campsites</a></li>
+        <li><a href={url('#faq')}>FAQ</a></li>
+        <li><a href={url('cancellation-policy/')}>Cancellation &amp; refund policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="wrap footer__note">
+    Photos are illustrative stock or area photos, not the campsites. Credits are shown with each photo.
+  </p>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 4rem;
+    padding: 3rem 0 2rem;
+    background: var(--color-dark);
+    color: #dfe7e1;
+    font-size: 0.95rem;
+  }
+  .footer a {
+    color: #fff;
+  }
+  .footer__grid {
+    display: grid;
+    gap: 2rem;
+  }
+  .footer__brand {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #fff;
+    margin-top: 0;
+  }
+  .footer__head {
+    font-weight: 600;
+    color: #fff;
+    margin-top: 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .footer__note {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #a9b6ad;
+  }
+  @media (min-width: 720px) {
+    .footer__grid {
+      grid-template-columns: 2fr 1.5fr 1fr;
+    }
+  }
+</style>

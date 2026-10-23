@@ -1,0 +1,26 @@
+---
+/** Plain text where every "Contact us on WhatsApp to confirm." becomes a WhatsApp link about `topic`. */
+import { CONFIRM, whatsappLink } from '@/lib/whatsapp';
+
+interface Props {
+  text: string;
+  topic: string;
+}
+
+const { text, topic } = Astro.props;
+const parts = text.split(CONFIRM);
+const href = whatsappLink(`Hi, I'd like to confirm a detail about ${topic}.`);
+---
+
+{
+  parts.map((part, i) => (
+    <>
+      {part}
+      {i < parts.length - 1 && (
+        <a class="confirm" href={href} target="_blank" rel="noopener">
+          {CONFIRM}
+        </a>
+      )}
+    </>
+  ))
+}

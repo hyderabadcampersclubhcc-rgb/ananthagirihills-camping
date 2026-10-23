@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import Rich from '@/components/Rich.astro';
+import { url, inr } from '@/lib/url';
+
+const packages = (await getCollection('packages')).sort((a, b) => a.data.order - b.data.order);
+const rows: [string, (d: (typeof packages)[number]['data']) => string][] = [
+  ['Price per person', (d) => inr(d.price)],
+  ['Best for', (d) => d.compare.bestFor],
+  ['Runs', (d) => d.runs],
+  ['Tent', (d) => d.stay.tent],
+  ['Check-in', (d) => d.checkIn],
+  ['Check-out', (d) => d.checkOut],
+  ['Meals', (d) => d.compare.meals],
+  ['Activities', (d) => d.compare.activities],
+];
+---
+
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"><span class="sr">Campsite</span></th>
+        {packages.map((p) => <th scope="col"><a href={url(`packages/${p.id}/`)}>{p.data.title}</a></th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map(([label, get]) => (
+          <tr>
+            <th scope="row">{label}</th>
+            {packages.map((p) => (
+              <td>
+                <Rich text={get(p.data)} topic={p.data.title} />
+              </td>
+            ))}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  tbody th {
+    white-space: nowrap;
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+</style>

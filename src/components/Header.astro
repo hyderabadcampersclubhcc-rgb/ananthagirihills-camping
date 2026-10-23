@@ -1,0 +1,70 @@
+---
+import site from '@/data/site.json';
+import { url } from '@/lib/url';
+import { whatsappLink } from '@/lib/whatsapp';
+---
+
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="brand" href={url()}>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5 4 27h24L16 5Zm0 8 5.5 14h-11L16 13Z" /></svg>
+      <span>{site.name}</span>
+    </a>
+    <nav aria-label="Main">
+      <a href={url('#packages')}>Packages</a>
+      <a href={url('#compare')}>Compare</a>
+      <a href={url('#faq')}>FAQ</a>
+    </nav>
+    <a class="btn btn--small" href={whatsappLink('Hi, I want to book camping in Ananthagiri Hills.')} target="_blank" rel="noopener">
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 3.75rem;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-right: auto;
+  }
+  .brand svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: currentColor;
+  }
+  nav {
+    display: none;
+    gap: 1.25rem;
+  }
+  nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  nav a:hover {
+    color: var(--color-accent);
+  }
+  @media (min-width: 720px) {
+    nav {
+      display: flex;
+    }
+  }
+</style>

@@ -1,0 +1,98 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { photos } from '@/data/photos';
+import { url, inr } from '@/lib/url';
+
+interface Props {
+  pkg: CollectionEntry<'packages'>;
+}
+
+const { pkg } = Astro.props;
+const d = pkg.data;
+const photo = photos[d.photos[0]];
+const href = url(`packages/${pkg.id}/`);
+---
+
+<article class="card">
+  <a href={href} class="card__media" tabindex="-1" aria-hidden="true">
+    <Image src={photo.src} alt="" widths={[400, 700]} sizes="(min-width: 960px) 25vw, (min-width: 600px) 50vw, 100vw" />
+    <span class="card__badge">1 night / 2 days</span>
+  </a>
+  <div class="card__body">
+    <ul class="chips">{d.tags.map((t) => <li>{t}</li>)}</ul>
+    <h3><a href={href}>{d.title}</a></h3>
+    <p>{d.summary}</p>
+    <p class="card__runs">{d.runs}</p>
+    <div class="card__foot">
+      <p class="price"><span>From</span> <strong>{inr(d.price)}</strong> <span>/person</span></p>
+      <a class="btn btn--small" href={href}>View package</a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .card__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+  }
+  .card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card__badge {
+    position: absolute;
+    left: 0.75rem;
+    top: 0.75rem;
+    background: rgb(0 0 0 / 0.65);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.1rem 1.2rem;
+    flex: 1;
+  }
+  h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--color-accent);
+  }
+  p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+  .card__runs {
+    font-size: 0.85rem;
+  }
+  .card__foot {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+</style>

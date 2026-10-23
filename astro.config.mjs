@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import hostinger from './integrations/hostinger.mjs';
@@ -20,5 +20,16 @@ export default defineConfig({
     mdx(),
     sitemap({ filter: (page) => !/\/(admin|api|thank-you|preview)(\/|$)/.test(page) }),
     hostinger({ productionHost }),
+  ],
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: 'Inter',
+      cssVariable: '--font-body',
+      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+      options: {
+        variants: [{ src: ['./src/assets/fonts/inter-latin-wght-normal.woff2'], weight: '100 900', style: 'normal', display: 'swap' }],
+      },
+    },
   ],
 });

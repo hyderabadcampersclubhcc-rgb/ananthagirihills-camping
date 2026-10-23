@@ -1,0 +1,76 @@
+---
+/** Camping-relevant parts of the HCC cancellation policy (staging, last updated 5 October 2026). */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Rich from '@/components/Rich.astro';
+import site from '@/data/site.json';
+import { url } from '@/lib/url';
+import { CONFIRM, whatsappLink } from '@/lib/whatsapp';
+---
+
+<BaseLayout title="Cancellation & Refund Policy" description="Advance, refunds and cancellations for Ananthagiri Hills camping packages.">
+  <main class="wrap page">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href={url()}>Home</a> › <span>Cancellation &amp; Refund Policy</span></nav>
+    <h1>Cancellation &amp; Refund Policy</h1>
+    <p class="lead">Last updated 5 October 2026</p>
+
+    <h2>Camping packages</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th scope="col">Campsite</th><th scope="col">Cancellation rule</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href={url('packages/budget-camping-pool-music/')}>Budget Camping with Pool &amp; Music</a></td>
+            <td>The ₹500 per head advance is non-refundable.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href={url('packages/adventure-camping-harivillu/')}>Harivillu Resort</a>,
+              <a href={url('packages/lakeside-camping-sarpanpally/')}>Sarpanpally Lake</a> and
+              <a href={url('packages/premium-camping-trance-veechika/')}>Trance Veechika</a> camping
+            </td>
+            <td>Not confirmed yet. <Rich text={CONFIRM} topic="the cancellation policy" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Missed check-in</h2>
+    <p>Please reach the campsite on time. Late arrivals may miss meals and activities.</p>
+
+    <h2>If the plan changes</h2>
+    <ul>
+      <li>Activities depend on the weather and may change for safety.</li>
+      <li>Ask before you book: we confirm the exact terms for your date on WhatsApp.</li>
+    </ul>
+
+    <h2>How to cancel</h2>
+    <p>
+      Message us on <a href={whatsappLink('Hi, I want to cancel my camping booking.')} target="_blank" rel="noopener">WhatsApp</a> or call
+      <a href={site.phoneHref}>{site.phone}</a> with your name, campsite and date. The cancellation date is the day we receive your message.
+    </p>
+  </main>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: 48rem;
+  }
+  .crumbs {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    padding-top: 1.25rem;
+  }
+  h1 {
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    margin: 1rem 0 0.25rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 2.25rem;
+  }
+  table {
+    min-width: 0;
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+/** Visible FAQ plus matching FAQPage JSON-LD (the schema text equals the visible text). */
+import Rich from '@/components/Rich.astro';
+
+interface Props {
+  faqs: { q: string; a: string }[];
+  topic: string;
+}
+
+const { faqs, topic } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
+---
+
+<div class="faq">
+  {
+    faqs.map(({ q, a }) => (
+      <details>
+        <summary>{q}</summary>
+        <p><Rich text={a} topic={topic} /></p>
+      </details>
+    ))
+  }
+</div>
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<style>
+  .faq {
+    display: grid;
+    gap: 0.6rem;
+  }
+  details {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+  }
+  summary {
+    font-weight: 600;
+    cursor: pointer;
+  }
+  details p {
+    margin: 0.6rem 0 0;
+    color: var(--color-muted);
+  }
+</style>
