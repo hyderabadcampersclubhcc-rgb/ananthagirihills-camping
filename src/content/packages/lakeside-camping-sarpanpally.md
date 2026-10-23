@@ -72,7 +72,7 @@ faqs:
     a: 'You travel to the campsite on your own; there is no transport from Hyderabad. Self-drive (about 80 km, 2 to 2.5 hours), or train/bus to Vikarabad and an auto or cab.'
   - q: How do I book?
     a: Message HCC on WhatsApp (+91 81793 21382) with your date and number of guests.
-photos: [campfire, ananthagiri, tents]
+photos: [ananthagiri, campfire, tents]
 compare:
   bestFor: Camping by the water
   meals: High tea, live-kitchen dinner, breakfast
