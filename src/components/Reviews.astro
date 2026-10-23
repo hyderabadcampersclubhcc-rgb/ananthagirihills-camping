@@ -1,0 +1,68 @@
+---
+/**
+ * Genuine guest reviews only (copied with permission from Google or WhatsApp, with the source shown).
+ * Renders nothing while src/data/reviews.json is empty. No star ratings or AggregateRating schema are invented.
+ *
+ * Entry shape: { "name": "Priya", "campsite": "Sarpanpally Lake", "date": "2026-11", "text": "...", "source": "Google", "url": "https://..." }
+ */
+import reviews from '@/data/reviews.json';
+
+interface Review {
+  name: string;
+  campsite: string;
+  date: string;
+  text: string;
+  source: string;
+  url?: string;
+}
+
+const list = reviews as Review[];
+---
+
+{
+  list.length > 0 && (
+    <section class="wrap section" aria-labelledby="reviews-h">
+      <h2 id="reviews-h">What campers say</h2>
+      <ul class="reviews">
+        {list.map((r) => (
+          <li>
+            <blockquote>{r.text}</blockquote>
+            <p>
+              <strong>{r.name}</strong> · {r.campsite} · {r.date} ·{' '}
+              {r.url ? <a href={r.url} target="_blank" rel="noopener">{r.source}</a> : r.source}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  .reviews {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .reviews li {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+  }
+  blockquote {
+    margin: 0 0 0.6rem;
+  }
+  .reviews p {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--color-muted);
+  }
+  @media (min-width: 760px) {
+    .reviews {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

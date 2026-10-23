@@ -1,0 +1,117 @@
+---
+/**
+ * Package gallery. Real campsite photos (src/assets/campsites/<id>/) when present; otherwise the
+ * package's labelled stock/area photos plus a note that real photos are coming.
+ */
+import { Image } from 'astro:assets';
+import Photo from '@/components/Photo.astro';
+import { campsitePhotos } from '@/lib/gallery';
+import type { PhotoKey } from '@/data/photos';
+
+interface Props {
+  packageId: string;
+  campsite: string;
+  fallback: PhotoKey[];
+}
+
+const { packageId, campsite, fallback } = Astro.props;
+const real = campsitePhotos(packageId);
+const [lead, ...rest] = fallback;
+---
+
+{
+  real.length > 0 ? (
+    <div class="gallery gallery--real" data-count={Math.min(real.length, 3)}>
+      {real.map((p, i) => (
+        <figure class:list={['shot', i === 0 && 'gallery__lead', i > 2 && 'shot--more']}>
+          <Image
+            src={p.src}
+            alt={`${p.caption} at ${campsite}`}
+            widths={[480, 800, 1200, 1600]}
+            sizes={i === 0 ? '(min-width: 960px) 60vw, 100vw' : '(min-width: 960px) 30vw, 50vw'}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            fetchpriority={i === 0 ? 'high' : 'auto'}
+          />
+          <figcaption>{p.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  ) : (
+    <>
+      <div class="gallery" data-count={Math.min(fallback.length, 3)}>
+        <Photo name={lead} sizes="(min-width: 960px) 60vw, 100vw" loading="eager" class="gallery__lead" />
+        {rest.slice(0, 2).map((name) => <Photo name={name} sizes="(min-width: 960px) 30vw, 50vw" />)}
+      </div>
+      <p class="gallery__note">Real photos of {campsite} are coming soon. Ask us on WhatsApp and we'll share recent photos.</p>
+    </>
+  )
+}
+
+<style>
+  .gallery {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallery > :global(.gallery__lead) {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
+  .gallery > :global(figure:not(.gallery__lead)) {
+    aspect-ratio: 4 / 3;
+  }
+  .gallery > :global(figure:not(.gallery__lead) figcaption),
+  .gallery > :global(figure:not(.gallery__lead) .photo__label) {
+    font-size: 0.6rem;
+  }
+  .gallery__note {
+    margin: 0.5rem 0 0;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+  .shot {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+  .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .shot figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: rgb(0 0 0 / 0.55);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-top-right-radius: 6px;
+  }
+  @media (min-width: 960px) {
+    .gallery {
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 13rem 13rem;
+    }
+    .gallery > :global(.gallery__lead) {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      aspect-ratio: auto;
+    }
+    .gallery > :global(figure:not(.gallery__lead)) {
+      aspect-ratio: auto;
+    }
+    .gallery[data-count='2'] > :global(figure:not(.gallery__lead)) {
+      grid-row: 1 / span 2;
+    }
+    .gallery--real {
+      grid-auto-rows: 13rem;
+    }
+    .gallery--real > :global(.shot--more) {
+      grid-column: span 1;
+    }
+  }
+</style>

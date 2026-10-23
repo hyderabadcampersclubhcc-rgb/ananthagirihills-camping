@@ -9,6 +9,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "check:links": "node tools/check-links.mjs",
+    "check:seo": "node tools/check-seo.mjs",
+    "check:all": "node tools/check-seo.mjs && node tools/check-links.mjs",
     "astro": "astro"
   },
   "dependencies": {

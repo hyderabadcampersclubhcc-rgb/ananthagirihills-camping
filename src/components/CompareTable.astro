@@ -1,58 +1,171 @@
 ---
+/** All four campsites side by side: a table on wide screens, one card per campsite on phones. */
 import { getCollection } from 'astro:content';
 import Rich from '@/components/Rich.astro';
 import { url, inr } from '@/lib/url';
+import { CONFIRM } from '@/lib/whatsapp';
+
+type Data = Awaited<ReturnType<typeof getCollection<'packages'>>>[number]['data'];
 
 const packages = (await getCollection('packages')).sort((a, b) => a.data.order - b.data.order);
-const rows: [string, (d: (typeof packages)[number]['data']) => string][] = [
-  ['Price per person', (d) => inr(d.price)],
-  ['Advance (non-refundable)', (d) => (d.advance ? `${inr(d.advance)} per person` : 'Contact us on WhatsApp to confirm.')],
+const rows: [string, (d: Data) => string][] = [
+  ['Price', (d) => `From ${inr(d.price)} per person (1 night / 2 days, meals included)`],
+  ['Advance', (d) => (d.advance ? `${inr(d.advance)} per person, non-refundable` : CONFIRM)],
+  ['Availability', (d) => d.runs],
   ['Best for', (d) => d.compare.bestFor],
-  ['Runs', (d) => d.runs],
-  ['Tent', (d) => d.stay.tent],
+  ['Accommodation', (d) => `${d.stay.tent} · ${d.stay.washroom}`],
   ['Check-in', (d) => d.checkIn],
   ['Check-out', (d) => d.checkOut],
   ['Meals', (d) => d.compare.meals],
-  ['Activities', (d) => d.compare.activities],
+  ['Activities included', (d) => d.compare.activities],
+  ['Not included', (d) => d.compare.notIncluded],
 ];
 ---
 
-<div class="table-scroll">
-  <table>
-    <thead>
-      <tr>
-        <th scope="col"><span class="sr">Campsite</span></th>
-        {packages.map((p) => <th scope="col"><a href={url(`packages/${p.id}/`)}>{p.data.title}</a></th>)}
-      </tr>
-    </thead>
-    <tbody>
-      {
-        rows.map(([label, get]) => (
-          <tr>
-            <th scope="row">{label}</th>
-            {packages.map((p) => (
-              <td>
-                <Rich text={get(p.data)} topic={p.data.title} />
-              </td>
+<div class="compare">
+  <div class="table-scroll compare__table">
+    <table>
+      <caption class="sr-only">Comparison of the four Ananthagiri Hills camping packages</caption>
+      <thead>
+        <tr>
+          <th scope="col">Campsite</th>
+          {
+            packages.map((p) => (
+              <th scope="col">
+                <a href={url(`packages/${p.id}/`)}>{p.data.title}</a>
+                <span class="compare__site">{p.data.campsiteShort}</span>
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map(([label, get]) => (
+            <tr>
+              <th scope="row">{label}</th>
+              {packages.map((p) => (
+                <td>
+                  <Rich text={get(p.data)} topic={p.data.title} />
+                </td>
+              ))}
+            </tr>
+          ))
+        }
+        <tr>
+          <th scope="row"><span class="sr-only">Details</span></th>
+          {packages.map((p) => <td><a class="btn btn--small" href={url(`packages/${p.id}/`)} aria-label={`View ${p.data.title}`}>View package</a></td>)}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="compare__cards">
+    {
+      packages.map((p) => (
+        <li class="ccard">
+          <h3>
+            <a href={url(`packages/${p.id}/`)}>{p.data.title}</a>
+          </h3>
+          <p class="compare__site">{p.data.campsiteShort}</p>
+          <dl>
+            {rows.map(([label, get]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>
+                  <Rich text={get(p.data)} topic={p.data.title} />
+                </dd>
+              </div>
             ))}
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+          </dl>
+          <a class="btn btn--small" href={url(`packages/${p.id}/`)} aria-label={`View ${p.data.title}`}>View package</a>
+        </li>
+      ))
+    }
+  </ul>
 </div>
 
 <style>
-  .sr {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
+  .compare__table {
+    display: none;
+  }
+  .compare__site {
+    display: block;
+    font-weight: 500;
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    margin: 0.2rem 0 0;
+  }
+  thead th {
+    vertical-align: bottom;
+  }
+  thead th a {
+    color: var(--color-text);
   }
   tbody th {
-    white-space: nowrap;
     color: var(--color-muted);
     font-weight: 600;
+    white-space: nowrap;
+  }
+  /* Keep the row labels in view while the table scrolls sideways. */
+  th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--color-surface);
+    box-shadow: 1px 0 0 var(--color-line);
+  }
+  thead th:first-child {
+    background: var(--color-sand);
+  }
+  tbody tr:nth-child(even) td {
+    background: #fdfcf9;
+  }
+  .compare__cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .ccard {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem 1.2rem;
+  }
+  .ccard h3 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  .ccard h3 a {
+    color: var(--color-text);
+  }
+  .ccard dl {
+    margin: 0.75rem 0 1rem;
+    display: grid;
+  }
+  .ccard dl div {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--color-line);
+    font-size: 0.92rem;
+  }
+  .ccard dt {
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+  .ccard dd {
+    margin: 0;
+  }
+  @media (min-width: 860px) {
+    .compare__table {
+      display: block;
+    }
+    .compare__cards {
+      display: none;
+    }
   }
 </style>

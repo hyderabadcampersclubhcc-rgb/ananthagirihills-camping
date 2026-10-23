@@ -6,7 +6,8 @@ import PackageCard from '@/components/PackageCard.astro';
 import CompareTable from '@/components/CompareTable.astro';
 import Faq from '@/components/Faq.astro';
 import Rich from '@/components/Rich.astro';
-import { inr } from '@/lib/url';
+import Reviews from '@/components/Reviews.astro';
+import { url, inr } from '@/lib/url';
 import { whatsappLink } from '@/lib/whatsapp';
 
 const packages = (await getCollection('packages')).sort((a, b) => a.data.order - b.data.order);
@@ -28,6 +29,11 @@ const faqs = [
   { q: 'When is the best time to camp near Hyderabad?', a: 'July to February is the best time for the Ananthagiri Hills: green after the monsoon, with cooler nights. Harivillu, Sarpanpally Lake and Trance Veechika run on Saturdays; check availability for any date with us on WhatsApp.' },
   { q: 'Can I go camping near Hyderabad without a car?', a: 'Yes. Take the 12702 from Nampally or the 12732 from Secunderabad to Vikarabad, or a TSRTC bus, then an auto or cab to the campsite.' },
   { q: 'Is camping suitable for families and first-timers?', a: 'Yes. These are organised campsites with tents, meals and washrooms, not wild camping.' },
+  { q: 'Which Ananthagiri campsites have a swimming pool?', a: 'Budget camping (pool open 5 to 10 pm) and Trance Veechika (pool open 4 to 6 pm).' },
+  { q: 'Is there lakeside camping near Hyderabad?', a: 'Yes. The Sarpanpally Lake campsite at Godamguda village, near Vikarabad, has tents on the bank of the lake, about 80 to 90 km from Hyderabad.' },
+  { q: 'What time is check-in and check-out?', a: 'Check-in is at 4 pm at the budget camp. Check-in time at Harivillu, Sarpanpally Lake and Trance Veechika: Contact us on WhatsApp to confirm. Check-out is at 11 am the next morning at all four.' },
+  { q: 'How do I book, and is the advance refundable?', a: 'Send an enquiry on WhatsApp with your date and number of guests. Once we confirm availability, a ₹500 advance per person reserves your place; the advance is non-refundable. The cancellation & refund policy has the details.' },
+  { q: 'Are there extra charges at the campsites?', a: 'The price covers what each campsite page lists as included. Food and drinks beyond the included meals are extra everywhere. Optional paid activities at Sarpanpally Lake and their charges: Contact us on WhatsApp to confirm.' },
 ];
 ---
 
@@ -68,8 +74,25 @@ const faqs = [
 
     <section class="wrap section" id="compare" aria-labelledby="compare-h">
       <h2 id="compare-h">Compare the campsites</h2>
-      <p class="lead">Check-in times, meals and activities side by side.</p>
+      <p class="lead">Price, advance, tents, check-in and check-out, meals, activities and what is not included, side by side.</p>
       <CompareTable />
+    </section>
+
+    <section class="wrap section" aria-labelledby="choose-h">
+      <h2 id="choose-h">Which campsite suits you?</h2>
+      <ul class="choose">
+        {
+          packages.map((p) => (
+            <li>
+              <p class="choose__for">{p.data.compare.bestFor}</p>
+              <p>{p.data.chooser}</p>
+              <a href={url(`packages/${p.id}/`)}>
+                {p.data.title} <span class="sr-only">({p.data.campsiteShort})</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
     <section class="wrap section" aria-labelledby="night-h">
@@ -89,17 +112,16 @@ const faqs = [
 
     <section class="wrap section split" aria-labelledby="when-h">
       <div>
-        <h2 id="when-h">When to go</h2>
+        <h2 id="when-h">When to go and how to get there</h2>
         <p>
           July to February is the best time for the Ananthagiri Hills: green after the monsoon, with cooler nights. Most of the camps
-          run on Saturdays, so you need no leave. Check availability for your date on WhatsApp before you travel.
+          run on Saturdays, so you need no leave.
         </p>
-        <h2>Getting there</h2>
         <p>
-          Ananthagiri Hills is near Vikarabad, about 80 km from Hyderabad, roughly 2 to 2.5 hours by road. Without a car, take train
-          12702 from Nampally (2:55 pm, also stopping at Begumpet and Lingampalli) or train 12732 from Secunderabad (4:00 pm) to
-          Vikarabad, or a TSRTC bus, then an auto or cab to your campsite.
+          The hills are near Vikarabad, about 80 km from Hyderabad: roughly 2 to 2.5 hours by road, or a train or TSRTC bus to
+          Vikarabad and then an auto or cab. Transport is not included at any campsite.
         </p>
+        <p><a class="btn btn--small" href={url('ananthagiri-hills-guide/')}>Read the Ananthagiri Hills travel guide</a></p>
       </div>
       <Photo name="ananthagiri" sizes="(min-width: 860px) 45vw, 100vw" class="split__photo" />
     </section>
@@ -125,6 +147,8 @@ const faqs = [
       </div>
     </section>
 
+    <Reviews />
+
     <section class="wrap section" id="faq" aria-labelledby="faq-h">
       <h2 id="faq-h">Questions about camping near Hyderabad</h2>
       <Faq faqs={faqs} topic="camping near Hyderabad" />
@@ -132,7 +156,7 @@ const faqs = [
 
     <section class="wrap section">
       <div class="band">
-        <h2>Not sure which one to pick?</h2>
+        <h2>Still not sure which one to pick?</h2>
         <p>Tell us your dates and what you enjoy. A real person will suggest the right campsite.</p>
         <a class="btn btn--light" href={whatsappLink('Hi, which camping package would suit us?')} target="_blank" rel="noopener">WhatsApp us</a>
       </div>
@@ -244,7 +268,34 @@ const faqs = [
   }
   .split p {
     color: var(--color-muted);
-    margin: 0 0 2rem;
+    margin: 0 0 1rem;
+  }
+  .choose {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .choose li {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem;
+    display: grid;
+    gap: 0.4rem;
+    align-content: start;
+  }
+  .choose p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+  .choose .choose__for {
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .choose a {
+    font-weight: 600;
   }
   .split :global(.split__photo) {
     aspect-ratio: 4 / 3;
@@ -275,6 +326,7 @@ const faqs = [
   }
   @media (min-width: 600px) {
     .grid,
+    .choose,
     .steps {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -287,6 +339,7 @@ const faqs = [
   }
   @media (min-width: 1040px) {
     .grid,
+    .choose,
     .steps {
       grid-template-columns: repeat(4, 1fr);
     }

@@ -11,6 +11,28 @@ npm run dev      # http://localhost:4321
 npm run build    # output in dist/
 ```
 
+## Checks
+
+```bash
+npm run check       # types and templates
+npm run build
+npm run check:all   # SEO (titles, descriptions, H1, canonical, OG, JSON-LD, robots, sitemap) + internal links
+```
+
+Run `check:all` with the same `SITE_URL` / `BASE_PATH` / `PUBLIC_ALLOW_INDEXING` as the build. Both workflows run it.
+
+## Content
+
+- Packages: `src/content/packages/*.md` (all prices, timings and inclusions live here).
+- Real campsite photos: drop them into `src/assets/campsites/<package>/` (see the README there).
+- Genuine reviews: `src/data/reviews.json` (the section stays hidden while it is empty).
+- Plan, competitor audit and facts to confirm: `docs/improvement-plan.md`.
+
+## Previews
+
+The GitHub Pages preview (`.github/workflows/preview.yml`) publishes `main` to
+`https://<owner>.github.io/<repo>/`. It is always `noindex`, so it never appears in Google.
+
 ## Deploy (GitHub Actions, `.github/workflows/deploy.yml`)
 
 | Trigger | Deploys to |

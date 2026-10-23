@@ -1,5 +1,7 @@
 ---
 title: Premium Camping in Ananthagiri Hills
+seoTitle: Premium Camping at Trance Veechika, Ananthagiri Hills | ₹2,999
+seoDescription: Tents on a private resort campsite with a pool, sports, bonfire and a guided 6 am sunrise trek. Saturdays, 1 night / 2 days, ₹2,999 per person.
 order: 4
 summary: Premium tents with a pool, sports, bonfire and a guided sunrise trek in the Ananthagiri forest.
 price: 2999
@@ -7,6 +9,7 @@ advance: 500
 tags: [Premium camping, Meals, Pool]
 runs: Saturdays (check availability on WhatsApp)
 campsite: Trance Veechika Resort, Ananthagiri Hills, Vikarabad
+campsiteShort: Trance Veechika Resort
 location: About 80 km from Hyderabad
 checkIn: Contact us on WhatsApp to confirm.
 checkOut: 11:00 am (Sunday)
@@ -30,6 +33,13 @@ itinerary:
   - title: Sunrise trek and check-out
     text: A guided sunrise trek through the Ananthagiri forest trails at 6 am, breakfast, free time, and check-out at 11 am.
     meals: Breakfast
+meals:
+  - name: Hi-tea
+    detail: 'On arrival. Time: Contact us on WhatsApp to confirm.'
+  - name: Dinner
+    detail: 'After the bonfire. Menu: Contact us on WhatsApp to confirm.'
+  - name: Breakfast
+    detail: 'After the sunrise trek. Menu: Contact us on WhatsApp to confirm.'
 included:
   - Tent stay, 2 or 3 sharing, with ground bedding
   - Hi-tea, dinner and breakfast
@@ -77,7 +87,9 @@ photos: [forest-trek, ananthagiri, tents]
 compare:
   bestFor: Pool and sunrise trek
   meals: Hi-tea, dinner, breakfast
-  activities: Pool, sand volleyball, mini cricket, indoor games, bonfire, sunrise trek
+  activities: 'Pool, sand volleyball, mini cricket, indoor games, bonfire, sunrise trek. Rain dance: Contact us on WhatsApp to confirm.'
+  notIncluded: Transport; adventure rope course; food beyond included meals
+chooser: A pool in the afternoon and a guided 6 am sunrise trek through the forest.
 ---
 
 The most comfortable way to camp at Ananthagiri. You stay in tents on a private campsite at Trance Veechika Resort, with a swimming pool in the afternoon, sports until late evening and a bonfire after dark.

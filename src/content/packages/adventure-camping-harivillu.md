@@ -1,5 +1,7 @@
 ---
 title: Premium Adventure Camping in Ananthagiri Hills
+seoTitle: Adventure Camping at Harivillu Resort, Ananthagiri | ₹2,000
+seoDescription: Two-person tents, a rope course of about 10 activities, cycling, short trek, bonfire and movie night. Saturdays, 1 night / 2 days, ₹2,000 per person.
 order: 2
 summary: Tents, a 10-activity rope course, cycling, sports and a movie night at Harivillu Resort, Ananthagiri Hills.
 price: 2000
@@ -7,6 +9,7 @@ advance: 500
 tags: [Camping, Meals, Adventure]
 runs: Saturdays (check availability on WhatsApp)
 campsite: Harivillu Resort, Ananthagiri Hills, Vikarabad
+campsiteShort: Harivillu Resort
 location: About 80 km from Hyderabad
 checkIn: Contact us on WhatsApp to confirm.
 checkOut: 11:00 am (Sunday)
@@ -29,6 +32,13 @@ itinerary:
   - title: Breakfast and check-out
     text: Breakfast, free time for games or cycling, and check-out at 11 am.
     meals: Breakfast
+meals:
+  - name: Evening tea with samosa
+    detail: 'On arrival. Time: Contact us on WhatsApp to confirm.'
+  - name: Dinner
+    detail: 'Menu: Contact us on WhatsApp to confirm.'
+  - name: Breakfast
+    detail: 'Before check-out. Menu: Contact us on WhatsApp to confirm.'
 included:
   - Tent stay, 2 sharing
   - Evening tea with samosa, dinner and breakfast
@@ -76,6 +86,8 @@ compare:
   bestFor: Adventure activities
   meals: Tea & samosa, dinner, breakfast
   activities: Rope course (~10), cycling, short trek, sports, movie, bonfire
+  notIncluded: Transport; cottage stays; extra food and drinks
+chooser: Keep busy all afternoon with a rope course of about 10 activities, cycling and a movie night.
 ---
 
 An activity-packed night in the Ananthagiri Hills. Harivillu Resort pairs two-person tents with a rope adventure course of about ten activities, cycling and a short trek. The evening winds down with music, a bonfire and an open-air movie when the weather allows.

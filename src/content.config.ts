@@ -11,6 +11,9 @@ const packages = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/packages' }),
   schema: z.object({
     title: z.string(),
+    /** <title> tag (under 70 characters) and meta description (70–170 characters), unique per package. */
+    seoTitle: z.string().max(70),
+    seoDescription: z.string().min(70).max(170),
     order: z.number(),
     summary: z.string(),
     price: z.number().int().positive(),
@@ -19,7 +22,11 @@ const packages = defineCollection({
     tags: z.array(z.string()),
     runs: z.string(),
     campsite: z.string(),
+    /** Short campsite name shown under the H1 and in the comparison table. */
+    campsiteShort: z.string(),
     location: z.string(),
+    /** Google Maps link for the exact campsite, only once the owner supplies it. */
+    mapUrl: z.url().optional(),
     checkIn: z.string(),
     checkOut: z.string(),
     gettingThere: z.string(),
@@ -29,6 +36,7 @@ const packages = defineCollection({
     suitableFor: z.array(z.string()),
     highlights: z.array(z.string()),
     itinerary: z.array(z.object({ title: z.string(), text: z.string(), meals: z.string() })),
+    meals: z.array(z.object({ name: z.string(), detail: z.string() })),
     included: z.array(z.string()),
     notIncluded: z.array(z.string()),
     carry: z.array(z.string()),
@@ -36,7 +44,9 @@ const packages = defineCollection({
     payment: z.array(z.string()),
     faqs: z.array(z.object({ q: z.string(), a: z.string() })),
     photos: z.array(z.enum(photoKeys)).min(1),
-    compare: z.object({ bestFor: z.string(), meals: z.string(), activities: z.string() }),
+    compare: z.object({ bestFor: z.string(), meals: z.string(), activities: z.string(), notIncluded: z.string() }),
+    /** Who this campsite suits, for the "Which campsite suits you?" chooser. */
+    chooser: z.string(),
   }),
 });
 

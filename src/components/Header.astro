@@ -2,69 +2,111 @@
 import site from '@/data/site.json';
 import { url } from '@/lib/url';
 import { whatsappLink } from '@/lib/whatsapp';
+
+const links = [
+  ['Packages', url('#packages')],
+  ['Compare', url('#compare')],
+  ['Guide', url('ananthagiri-hills-guide/')],
+  ['FAQ', url('#faq')],
+];
 ---
 
+<a class="skip" href="#main">Skip to content</a>
 <header class="header">
   <div class="wrap header__inner">
     <a class="brand" href={url()}>
       <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5 4 27h24L16 5Zm0 8 5.5 14h-11L16 13Z" /></svg>
       <span>{site.name}</span>
     </a>
-    <nav aria-label="Main">
-      <a href={url('#packages')}>Packages</a>
-      <a href={url('#compare')}>Compare</a>
-      <a href={url('#faq')}>FAQ</a>
+    <nav class="nav" aria-label="Main">
+      {links.map(([label, href]) => <a href={href}>{label}</a>)}
     </nav>
-    <a class="btn btn--small" href={whatsappLink('Hi, I want to book camping in Ananthagiri Hills.')} target="_blank" rel="noopener">
+    <a class="btn btn--small" href={whatsappLink('Hi, I want to check camping availability in Ananthagiri Hills.')} target="_blank" rel="noopener">
       WhatsApp
     </a>
   </div>
 </header>
 
 <style>
+  .skip {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: 50;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+  }
+  .skip:focus {
+    top: 0.5rem;
+  }
   .header {
     position: sticky;
     top: 0;
-    z-index: 10;
-    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    z-index: 20;
+    background: color-mix(in srgb, var(--color-bg) 94%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-line);
   }
   .header__inner {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1rem;
-    min-height: 3.75rem;
+    gap: 0 0.75rem;
+    min-height: 3.5rem;
   }
   .brand {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     font-weight: 700;
+    font-size: 0.95rem;
     color: var(--color-accent);
     text-decoration: none;
     margin-right: auto;
+    padding: 0.5rem 0;
+    min-width: 0;
   }
   .brand svg {
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
     fill: currentColor;
+    flex: none;
   }
-  nav {
-    display: none;
-    gap: 1.25rem;
+  .header__inner > .btn {
+    flex: none;
+    padding: 0.45rem 0.85rem;
   }
-  nav a {
+  /* Phones: the links sit on a second row so they stay visible without a hidden menu. */
+  .nav {
+    order: 3;
+    flex-basis: 100%;
+    display: flex;
+    gap: 0.25rem;
+    margin: 0 -0.5rem;
+    overflow-x: auto;
+  }
+  .nav a {
     color: var(--color-text);
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.55rem 0.5rem;
+    white-space: nowrap;
   }
-  nav a:hover {
+  .nav a:hover {
     color: var(--color-accent);
   }
-  @media (min-width: 720px) {
-    nav {
-      display: flex;
+  @media (min-width: 760px) {
+    .brand {
+      font-size: 1rem;
+    }
+    .nav {
+      order: 0;
+      flex-basis: auto;
+      margin: 0;
+      gap: 0.75rem;
     }
   }
 </style>

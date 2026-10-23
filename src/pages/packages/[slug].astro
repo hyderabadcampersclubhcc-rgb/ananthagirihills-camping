@@ -1,13 +1,17 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Photo from '@/components/Photo.astro';
+import Gallery from '@/components/Gallery.astro';
 import Rich from '@/components/Rich.astro';
 import Faq from '@/components/Faq.astro';
 import BookingBox from '@/components/BookingBox.astro';
+import StickyCta from '@/components/StickyCta.astro';
 import PackageCard from '@/components/PackageCard.astro';
+import { photos } from '@/data/photos';
+import { campsitePhotos } from '@/lib/gallery';
 import { url, inr } from '@/lib/url';
-import { whatsappLink } from '@/lib/whatsapp';
+import { CONFIRM, whatsappLink } from '@/lib/whatsapp';
 
 export async function getStaticPaths() {
   const packages = await getCollection('packages');
@@ -22,46 +26,88 @@ const { pkg } = Astro.props;
 const d = pkg.data;
 const { Content } = await render(pkg);
 const others = (await getCollection('packages')).filter((p) => p.id !== pkg.id).sort((a, b) => a.data.order - b.data.order);
+const real = campsitePhotos(pkg.id);
+const shareImage = real[0]?.src ?? photos[d.photos[0]].src;
+const pageUrl = new URL(url(`packages/${pkg.id}/`), Astro.site).href;
+const home = new URL(url(), Astro.site).href;
+
 const facts = [
   ['Duration', '1 night / 2 days'],
-  ['Price', `From ${inr(d.price)} per person`],
+  ['Price', `From ${inr(d.price)} per person, meals included`],
+  ['Advance', d.advance ? `${inr(d.advance)} per person, non-refundable` : CONFIRM],
   ['Runs', d.runs],
   ['Campsite', d.campsite],
   ['Check-in', d.checkIn],
   ['Check-out', d.checkOut],
-  ['Getting there', d.gettingThere],
   ['Stay', `${d.stay.tent} · ${d.stay.washroom}`],
+  ['Transport', 'Not included: you reach the campsite yourself'],
   ['Best suited for', d.suitableFor.join(', ')],
 ];
-const [lead, ...rest] = d.photos;
-const breadcrumb = {
+
+const productImage = (await getImage({ src: shareImage, width: 1200, format: 'jpg' })).src;
+const schema = {
   '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL(url(), Astro.site).href },
-    { '@type': 'ListItem', position: 2, name: d.title, item: new URL(url(`packages/${pkg.id}/`), Astro.site).href },
+  '@graph': [
+    {
+      '@type': 'Product',
+      '@id': `${pageUrl}#package`,
+      name: d.title,
+      description: d.summary,
+      image: new URL(productImage, Astro.site).href,
+      category: 'Camping package',
+      brand: { '@id': `${home}#business` },
+      offers: {
+        '@type': 'Offer',
+        url: pageUrl,
+        price: d.price,
+        priceCurrency: 'INR',
+        description: `Per person for 1 night / 2 days, meals included. ${d.runs}.`,
+        seller: { '@id': `${home}#business` },
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: home },
+        { '@type': 'ListItem', position: 2, name: 'Camping packages', item: `${home}#packages` },
+        { '@type': 'ListItem', position: 3, name: d.title, item: pageUrl },
+      ],
+    },
   ],
 };
 ---
 
-<BaseLayout title={`${d.title} | From ${inr(d.price)} per person`} description={d.summary}>
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+<BaseLayout
+  title={d.seoTitle}
+  description={d.seoDescription}
+  image={shareImage}
+  imageAlt={real[0] ? `${real[0].caption} at ${d.campsite}` : photos[d.photos[0]].alt}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <main class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href={url()}>Home</a> › <span>{d.title}</span></nav>
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={url()}>Home</a></li>
+        <li><a href={url('#packages')}>Camping packages</a></li>
+        <li><span aria-current="page">{d.title}</span></li>
+      </ol>
+    </nav>
 
     <header class="intro">
       <ul class="chips">{d.tags.map((t) => <li>{t}</li>)}</ul>
       <h1>{d.title}</h1>
+      <p class="intro__site">{d.campsiteShort} · {d.location}</p>
       <p class="lead">{d.summary}</p>
     </header>
 
-    <div class="gallery" data-count={d.photos.length}>
-      <Photo name={lead} sizes="(min-width: 960px) 60vw, 100vw" loading="eager" class="gallery__lead" />
-      {rest.slice(0, 2).map((name) => <Photo name={name} sizes="(min-width: 960px) 30vw, 50vw" />)}
-    </div>
+    <Gallery packageId={pkg.id} campsite={d.campsiteShort} fallback={d.photos} />
 
     <div class="layout">
+      <aside class="side" aria-label="Enquire about this camp">
+        <BookingBox title={d.title} price={d.price} advance={d.advance} runs={d.runs} />
+      </aside>
+
       <div class="content">
         <section aria-labelledby="glance">
           <h2 id="glance">At a glance</h2>
@@ -100,35 +146,22 @@ const breadcrumb = {
           </ol>
         </section>
 
-        <section aria-labelledby="stay">
-          <h2 id="stay">Stay &amp; getting there</h2>
-          <div class="panel">
-            <h3>{d.campsite}</h3>
-            <p>{d.stay.description}</p>
-            <p class="muted">{d.stay.tent} · {d.stay.washroom} · {d.location}</p>
-          </div>
-          <div class="panel">
-            <h3>Getting to the campsite (you travel on your own)</h3>
-            <p><strong>Outbound:</strong> {d.gettingThere}</p>
-            <p><strong>Return:</strong> {d.returns}</p>
+        <section aria-labelledby="meals">
+          <h2 id="meals">Meals</h2>
+          <ul class="meals">
             {
-              d.trains.length > 0 && (
-                <ul class="trains">
-                  {d.trains.map((t) => (
-                    <li>
-                      <strong>{t.time}</strong> {t.from}
-                      <br />
-                      <span class="muted">{t.note}</span>
-                    </li>
-                  ))}
-                </ul>
-              )
+              d.meals.map((m) => (
+                <li>
+                  <strong>{m.name}</strong>
+                  <span><Rich text={m.detail} topic={`the meals at ${d.title}`} /></span>
+                </li>
+              ))
             }
-          </div>
+          </ul>
         </section>
 
         <section aria-labelledby="inclusions">
-          <h2 id="inclusions">What's included</h2>
+          <h2 id="inclusions">What's included and what's not</h2>
           <div class="two">
             <div>
               <h3>Included</h3>
@@ -138,6 +171,50 @@ const breadcrumb = {
               <h3>Not included</h3>
               <ul class="ticks ticks--no">{d.notIncluded.map((x) => <li><Rich text={x} topic={d.title} /></li>)}</ul>
             </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="stay">
+          <h2 id="stay">Where you'll stay</h2>
+          <div class="panel">
+            <h3>{d.campsite}</h3>
+            <p>{d.stay.description}</p>
+            <p class="muted">{d.stay.tent} · {d.stay.washroom}</p>
+          </div>
+        </section>
+
+        <section aria-labelledby="location">
+          <h2 id="location">Location and how to get there</h2>
+          <div class="panel">
+            <p><strong>Where:</strong> {d.campsite}. {d.location}.</p>
+            <p><strong>Getting there:</strong> {d.gettingThere}. Transport is not included.</p>
+            <p><strong>Return:</strong> {d.returns}.</p>
+            {
+              d.trains.length > 0 && (
+                <>
+                  <h3>Trains to Vikarabad</h3>
+                  <ul class="trains">
+                    {d.trains.map((t) => (
+                      <li>
+                        <strong>{t.time}</strong> {t.from}
+                        <br />
+                        <span class="muted">{t.note}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )
+            }
+            <p class="muted">
+              {
+                d.mapUrl ? (
+                  <a class="btn btn--small" href={d.mapUrl} target="_blank" rel="noopener">Open in Google Maps</a>
+                ) : (
+                  <>Exact directions and the map pin are shared on WhatsApp after you enquire.</>
+                )
+              }
+            </p>
+            <p class="muted">More on roads, trains and the best time to visit: <a href={url('ananthagiri-hills-guide/')}>Ananthagiri Hills travel guide</a>.</p>
           </div>
         </section>
 
@@ -153,14 +230,14 @@ const breadcrumb = {
               <ul class="ticks">{d.suitableFor.map((x) => <li>{x}</li>)}</ul>
             </div>
           </div>
-          <h3>Important</h3>
+          <h3>Rules and safety</h3>
           <ul class="bullets">{d.important.map((x) => <li><Rich text={x} topic={d.title} /></li>)}</ul>
         </section>
 
         <section aria-labelledby="payment">
-          <h2 id="payment">Payment &amp; cancellation</h2>
+          <h2 id="payment">Payment and cancellation</h2>
           <ul class="bullets">{d.payment.map((x) => <li><Rich text={x} topic={d.title} /></li>)}</ul>
-          <p><a href={url('cancellation-policy/')}>Read the full cancellation policy</a></p>
+          <p><a href={url('cancellation-policy/')}>Read the full cancellation &amp; refund policy</a></p>
         </section>
 
         <section aria-labelledby="faqs">
@@ -168,23 +245,22 @@ const breadcrumb = {
           <Faq faqs={d.faqs} topic={d.title} />
         </section>
       </div>
-
-      <aside class="side" aria-label="Book this camp">
-        <BookingBox title={d.title} price={d.price} advance={d.advance} runs={d.runs} />
-      </aside>
     </div>
 
-    <section class="band">
-      <h2>Questions before you book?</h2>
-      <p>Ask us anything about {d.title}: dates, tents, travelling solo. A real person replies.</p>
+    <section class="band" aria-labelledby="ask-h">
+      <h2 id="ask-h">Questions before you enquire?</h2>
+      <p>Ask us anything about {d.title}: dates, tents, food, travelling solo. A real person replies.</p>
       <a class="btn btn--light" href={whatsappLink(`Hi, I have a question about ${d.title}.`)} target="_blank" rel="noopener">WhatsApp us</a>
     </section>
 
     <section class="section" aria-labelledby="more">
-      <h2 id="more">Other campsites</h2>
+      <h2 id="more">Compare with the other campsites</h2>
+      <p class="lead"><a href={url('#compare')}>See all four side by side</a></p>
       <div class="grid">{others.map((p) => <PackageCard pkg={p} />)}</div>
     </section>
   </main>
+
+  <StickyCta price={d.price} target="enquire" />
 </BaseLayout>
 
 <style>
@@ -193,27 +269,29 @@ const breadcrumb = {
     color: var(--color-muted);
     padding-top: 1.25rem;
   }
+  .crumbs ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .crumbs li:not(:last-child)::after {
+    content: '›';
+    margin-left: 0.35rem;
+  }
   .intro {
     padding: 1rem 0 1.25rem;
   }
   h1 {
     font-size: clamp(1.7rem, 5vw, 2.6rem);
-    margin: 0.6rem 0 0.5rem;
+    margin: 0.6rem 0 0.35rem;
   }
-  .gallery {
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: 1fr 1fr;
-  }
-  .gallery :global(.gallery__lead) {
-    grid-column: 1 / -1;
-    aspect-ratio: 16 / 9;
-  }
-  .gallery > :global(figure:not(.gallery__lead)) {
-    aspect-ratio: 4 / 3;
-  }
-  .gallery > :global(figure:not(.gallery__lead) figcaption) {
-    font-size: 0.6rem;
+  .intro__site {
+    margin: 0 0 0.6rem;
+    font-weight: 600;
+    color: var(--color-accent-dark);
   }
   .layout {
     display: grid;
@@ -232,7 +310,6 @@ const breadcrumb = {
   .facts {
     margin: 0;
     display: grid;
-    gap: 0;
     background: var(--color-surface);
     border: 1px solid var(--color-line);
     border-radius: var(--radius);
@@ -259,7 +336,8 @@ const breadcrumb = {
   .prose :global(p) {
     margin: 0 0 1rem;
   }
-  .days {
+  .days,
+  .meals {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -291,25 +369,42 @@ const breadcrumb = {
     font-size: 0.85rem;
     color: var(--color-muted);
   }
+  .meals {
+    gap: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+  }
+  .meals li {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .meals li:last-child {
+    border-bottom: 0;
+  }
+  .meals span {
+    color: var(--color-muted);
+  }
   .panel {
     background: var(--color-surface);
     border: 1px solid var(--color-line);
     border-radius: var(--radius);
     padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
   }
   .panel h3 {
     margin-top: 0;
   }
   .panel p {
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.6rem;
   }
   .muted {
     color: var(--color-muted);
     font-size: 0.9rem;
   }
   .trains {
-    margin: 0.75rem 0 0;
+    margin: 0 0 0.75rem;
     padding-left: 1.1rem;
     display: grid;
     gap: 0.5rem;
@@ -340,6 +435,9 @@ const breadcrumb = {
     max-width: 36rem;
     color: #e3efe8;
   }
+  .section .lead {
+    margin-top: -0.5rem;
+  }
   .grid {
     display: grid;
     gap: 1.25rem;
@@ -357,39 +455,28 @@ const breadcrumb = {
     .facts div:nth-last-child(2):nth-child(odd) {
       border-bottom: 0;
     }
+    .meals li {
+      grid-template-columns: 14rem 1fr;
+      gap: 1rem;
+    }
   }
   @media (min-width: 960px) {
-    .gallery {
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      height: 26rem;
-    }
-    .gallery :global(.gallery__lead) {
-      grid-column: 1;
-      grid-row: 1 / span 2;
-      aspect-ratio: auto;
-    }
-    .gallery > :global(figure:not(.gallery__lead)) {
-      aspect-ratio: auto;
-    }
-    .gallery[data-count='2'] > :global(figure:not(.gallery__lead)) {
-      grid-row: 1 / span 2;
-    }
     .layout {
       grid-template-columns: minmax(0, 1fr) 22rem;
       align-items: start;
     }
     .side {
+      grid-column: 2;
+      grid-row: 1;
       position: sticky;
       top: 5rem;
     }
+    .content {
+      grid-column: 1;
+      grid-row: 1;
+    }
     .grid {
       grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  @media (max-width: 959px) {
-    .side {
-      order: -1;
     }
   }
 </style>

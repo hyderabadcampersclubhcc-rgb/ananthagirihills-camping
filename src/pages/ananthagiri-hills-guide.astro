@@ -1,0 +1,280 @@
+---
+/**
+ * Destination guide: where the hills are, how to reach them, best time, nearby places, packing and choosing a camp.
+ * Facts only from the package data and the HCC staging guide; nothing month-by-month or unverified.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Photo from '@/components/Photo.astro';
+import Faq from '@/components/Faq.astro';
+import Rich from '@/components/Rich.astro';
+import { photos } from '@/data/photos';
+import { url, inr } from '@/lib/url';
+import { whatsappLink } from '@/lib/whatsapp';
+
+const packages = (await getCollection('packages')).sort((a, b) => a.data.order - b.data.order);
+const budget = packages.find((p) => p.id === 'budget-camping-pool-music')!;
+const pageUrl = new URL(url('ananthagiri-hills-guide/'), Astro.site).href;
+const home = new URL(url(), Astro.site).href;
+
+const faqs = [
+  { q: 'How far is Ananthagiri Hills from Hyderabad?', a: 'About 80 km, near Vikarabad: roughly 2 to 2.5 hours by road via the Chevella road. Trains and TSRTC buses run to Vikarabad, and an auto or cab covers the last stretch.' },
+  { q: 'Can I reach Ananthagiri Hills without a car?', a: 'Yes. Take train 12702 from Nampally (2:55 pm) or 12732 from Secunderabad (4:00 pm) to Vikarabad, or a TSRTC bus, then an auto or cab to your campsite.' },
+  { q: 'What is the best time to visit Ananthagiri Hills?', a: 'July to February: the hills are green after the monsoon and the nights are cooler. Activities at the campsites depend on the weather.' },
+  { q: 'Is transport included in the camping packages?', a: 'No. All four campsites are reach-it-yourself: drive, or take a train or bus to Vikarabad and an auto or cab from there.' },
+  { q: 'What can I see near the campsites?', a: 'On your own transport: Kotpalli Lake (boating and kayaking), the Anantha Padmanabha Swamy Temple, the Ananthagiri viewpoint and the Damagundam Shiva Temple.' },
+  { q: 'Which campsite should I choose?', a: 'Budget camping for a pool and a Saturday music night at the lowest price; Harivillu for adventure activities; Sarpanpally Lake to camp by the water; Trance Veechika for a pool and a guided sunrise trek.' },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: home },
+    { '@type': 'ListItem', position: 2, name: 'Ananthagiri Hills travel guide', item: pageUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title="Ananthagiri Hills Travel Guide: How to Reach, Best Time, Places to See"
+  description="How to reach Ananthagiri Hills from Hyderabad by car, train or bus, the best time to visit, places to see near Vikarabad, what to pack and which campsite to choose."
+  image={photos.ananthagiri.src}
+  imageAlt={photos.ananthagiri.alt}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+
+  <main class="wrap page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={url()}>Home</a></li>
+        <li><span aria-current="page">Ananthagiri Hills travel guide</span></li>
+      </ol>
+    </nav>
+
+    <h1>Ananthagiri Hills travel guide: how to reach, best time and places to see</h1>
+    <p class="lead">
+      The Ananthagiri Hills are a forested range near Vikarabad, about 80 km west of Hyderabad. This guide covers getting there by
+      road, train and bus, when to go, what to see nearby and how to pick one of the four campsites.
+    </p>
+
+    <nav class="toc" aria-label="On this page">
+      <a href="#reach">How to reach</a>
+      <a href="#best-time">Best time</a>
+      <a href="#nearby">Places nearby</a>
+      <a href="#camping">Camping</a>
+      <a href="#pack">What to pack</a>
+      <a href="#guide-faq">FAQ</a>
+    </nav>
+
+    <Photo name="ananthagiri" sizes="(min-width: 860px) 48rem, 100vw" loading="eager" class="guide__photo" />
+
+    <section aria-labelledby="reach">
+      <h2 id="reach">How to reach Ananthagiri Hills from Hyderabad</h2>
+
+      <h3>By car or bike</h3>
+      <p>
+        About 80 km, roughly 2 to 2.5 hours, via the Chevella road towards Vikarabad. This is the simplest way to reach any of the
+        campsites. At the budget campsite, parking is free, away from the tents, at the owner's risk; for parking at the other
+        campsites, ask us on WhatsApp.
+      </p>
+
+      <h3>By train</h3>
+      <p>Two afternoon trains reach Vikarabad in time for an evening check-in:</p>
+      <div class="table-scroll">
+        <table>
+          <caption class="sr-only">Afternoon trains from Hyderabad to Vikarabad</caption>
+          <thead>
+            <tr><th scope="col">Train</th><th scope="col">Departs</th><th scope="col">Also stops</th><th scope="col">Reaches Vikarabad</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">12702</th><td>Nampally, 2:55 pm</td><td>Begumpet 3:05 pm, Lingampalli 3:30 pm</td><td>4:02 pm</td></tr>
+            <tr><th scope="row">12732</th><td>Secunderabad, 4:00 pm</td><td>–</td><td>5:15 pm</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">Timings as listed on our package pages; check the current schedule on IRCTC or NTES before you travel.</p>
+
+      <h3>By bus</h3>
+      <p>TSRTC buses run from Hyderabad to Vikarabad.</p>
+
+      <h3>The last stretch</h3>
+      <p>
+        From Vikarabad, take an auto or cab to your campsite. The budget campsite is about 9 km from Vikarabad station. Exact
+        directions and the map pin for your campsite are shared on WhatsApp after you enquire.
+      </p>
+    </section>
+
+    <section aria-labelledby="best-time">
+      <h2 id="best-time">Best time to visit</h2>
+      <p>
+        July to February is the best time for the Ananthagiri Hills: the forest is green after the monsoon and the nights are
+        cooler. Most of the camps run on Saturday nights with check-out on Sunday, so a camping trip needs no leave from work.
+        Outdoor activities, bonfires and movie screenings depend on the weather on the day.
+      </p>
+    </section>
+
+    <section aria-labelledby="nearby">
+      <h2 id="nearby">Places to see near the campsites</h2>
+      <p>None of these are included in the camping packages; visit them on your own transport.</p>
+      <ul class="ticks">
+        <li><strong>Kotpalli Lake:</strong> boating and kayaking.</li>
+        <li><strong>Anantha Padmanabha Swamy Temple</strong> in the hills.</li>
+        <li><strong>Ananthagiri viewpoint</strong> over the forest.</li>
+        <li><strong>Damagundam Shiva Temple.</strong></li>
+        <li>
+          <strong>The trekking point</strong> about 4 km from the budget campsite. Transport to it and its entry and parking tickets are
+          not included in the <a href={url(`packages/${budget.id}/`)}>budget camping package</a>.
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="camping">
+      <h2 id="camping">Camping in the Ananthagiri Hills</h2>
+      <p>
+        These are organised campsites with tents, meals and washrooms, not wild camping, so they suit families and first-timers.
+        Each has one price per person for 1 night / 2 days including evening tea, dinner and breakfast.
+      </p>
+      <ul class="camps">
+        {
+          packages.map((p) => (
+            <li>
+              <a href={url(`packages/${p.id}/`)}>{p.data.title}</a>
+              <span>
+                {p.data.campsiteShort} · from {inr(p.data.price)} per person · {p.data.runs}
+              </span>
+              <span>{p.data.chooser}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p><a href={url('#compare')}>Compare all four campsites side by side</a></p>
+    </section>
+
+    <section aria-labelledby="pack">
+      <h2 id="pack">What to pack</h2>
+      <ul class="ticks">
+        <li>A government photo ID for every guest (checked at check-in)</li>
+        <li>Comfortable clothes and trekking or sports shoes</li>
+        <li>A torch, and a light jacket or hoodie for the night</li>
+        <li>Swimwear or a spare set of clothes if your campsite has a pool (budget camp and Trance Veechika)</li>
+        <li>Personal medicines and toiletries</li>
+        <li>A raincoat or poncho in the monsoon months</li>
+      </ul>
+      <h3>Camp rules to know before you go</h3>
+      <ul class="ticks">
+        <li>Arrive on time; late arrivals may miss meals and activities.</li>
+        <li>Drugs, illegal activity and nuisance are not tolerated; anyone breaking camp rules is asked to leave without a refund.</li>
+        <li>Keep valuables with you.</li>
+        <li><Rich text="Safety arrangements at each campsite: Contact us on WhatsApp to confirm." topic="safety arrangements at the campsites" /></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="guide-faq">
+      <h2 id="guide-faq">Ananthagiri Hills: common questions</h2>
+      <Faq faqs={faqs} topic="visiting Ananthagiri Hills" />
+    </section>
+
+    <section class="band">
+      <h2>Planning a night in the hills?</h2>
+      <p>Tell us your date and group size and we'll tell you which campsites are open.</p>
+      <a class="btn btn--light" href={whatsappLink('Hi, we are planning a camping trip to Ananthagiri Hills.')} target="_blank" rel="noopener">WhatsApp us</a>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: 52rem;
+  }
+  .crumbs {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    padding-top: 1.25rem;
+  }
+  .crumbs ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .crumbs li:not(:last-child)::after {
+    content: '›';
+    margin-left: 0.35rem;
+  }
+  h1 {
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    margin: 1rem 0 0.75rem;
+  }
+  h2 {
+    margin-top: 2.75rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.5rem;
+  }
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .toc a {
+    background: var(--color-sand);
+    color: var(--color-accent-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 99px;
+  }
+  .page :global(.guide__photo) {
+    aspect-ratio: 16 / 9;
+  }
+  table {
+    min-width: 34rem;
+  }
+  .muted {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+  .camps {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .camps li {
+    display: grid;
+    gap: 0.2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+  }
+  .camps a {
+    font-weight: 700;
+  }
+  .camps span {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+  }
+  .band {
+    margin-top: 3rem;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .band h2 {
+    margin-top: 0;
+  }
+  .band p {
+    margin: 0 auto 1.25rem;
+    color: #e3efe8;
+  }
+</style>

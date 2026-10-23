@@ -1,5 +1,7 @@
 ---
 title: Budget Camping in Ananthagiri Hills with Pool & Music
+seoTitle: Budget Camping in Ananthagiri Hills with Pool & Music | ₹1,600
+seoDescription: Tents, pool (5–10 pm), box cricket, Saturday DJ night, campfire and buffet meals near Vikarabad. 1 night / 2 days, ₹1,600 per person.
 order: 1
 summary: Tents, pool, box cricket, a Saturday DJ night, campfire and hot buffet meals in the Vikarabad woods.
 price: 1600
@@ -7,6 +9,7 @@ advance: 500
 tags: [Camping, Meals, Pool]
 runs: Call to check availability
 campsite: Campsite, Ananthagiri Hills (Vikarabad)
+campsiteShort: Budget campsite, Ananthagiri Hills
 location: About 9 km from Vikarabad station
 checkIn: 4:00 pm
 checkOut: 11:00 am
@@ -38,6 +41,13 @@ itinerary:
   - title: Breakfast and check-out
     text: 'Breakfast spread at 8:30 am: puri with curry, upma, idli or bonda with tea and coffee. Pack up and check out by 11 am.'
     meals: Breakfast
+meals:
+  - name: Evening tea and hot snacks
+    detail: 5–6 pm
+  - name: Dinner buffet
+    detail: '8:30–10 pm: bagara rice, steamed rice, chicken curry, veg curry, sambar'
+  - name: Breakfast
+    detail: '8:30 am: puri with curry, upma, idli or bonda, tea and coffee'
 included:
   - Tent stay, 2 or 3 sharing, with bedding and pillows
   - Evening tea and snacks, dinner buffet and breakfast
@@ -94,6 +104,8 @@ compare:
   bestFor: Pool and Saturday DJ on a budget
   meals: Tea & snacks, dinner buffet, breakfast
   activities: Pool, box cricket, games, Saturday DJ, campfire, rain dance
+  notIncluded: Transport; trekking-point transport, entry and parking
+chooser: Lowest price, with a pool from 5 to 10 pm and a Saturday DJ night.
 ---
 
 Escape the city to the woods of Vikarabad for an evening that has everything: a tent with proper bedding, a swimming pool, box cricket and games, a Saturday DJ session under the stars, and a hot local buffet. You check in at 4 pm and leave after breakfast; about 19 hours away from the city.

@@ -20,11 +20,14 @@ const escapeRegex = (p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 export default function hostinger({ productionHost, redirects = [] }) {
   /** @type {URL} */
   let site;
+  /** Base path (e.g. /ananthagirihills-camping/ on GitHub Pages); sitemap URLs include it, dist/ does not. */
+  let base = '/';
   return {
     name: 'camping-hostinger',
     hooks: {
       'astro:config:done': ({ config }) => {
         site = new URL(config.site ?? `https://${productionHost}`);
+        base = config.base.replace(/\/?$/, '/');
       },
       'astro:build:done': async ({ dir, logger }) => {
         const out = fileURLToPath(dir);
@@ -111,7 +114,8 @@ ${redirectRules.join('\n')}
           for (const block of xml.match(/<url>[\s\S]*?<\/url>/g) ?? []) {
             const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1];
             if (!loc) continue;
-            const rel = decodeURI(new URL(loc).pathname);
+            const pathname = decodeURI(new URL(loc).pathname);
+            const rel = pathname.startsWith(base) ? `/${pathname.slice(base.length)}` : pathname;
             const htmlFile = path.join(out, rel.endsWith('/') ? `${rel}index.html` : rel);
             const html = await readFile(htmlFile, 'utf8').catch(() => '');
             if (/<meta name="robots" content="noindex/.test(html)) {

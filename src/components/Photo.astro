@@ -1,4 +1,5 @@
 ---
+/** A stock/area photo with its visible "not the campsite" label and licence credit. */
 import { Image } from 'astro:assets';
 import { photos, type PhotoKey } from '@/data/photos';
 
@@ -14,7 +15,15 @@ const photo = photos[name];
 ---
 
 <figure class:list={['photo', className]}>
-  <Image src={photo.src} alt={photo.alt} widths={[480, 800, 1200]} sizes={sizes} loading={loading} />
+  <Image
+    src={photo.src}
+    alt={photo.alt}
+    widths={[480, 800, 1200, 1600]}
+    sizes={sizes}
+    loading={loading}
+    fetchpriority={loading === 'eager' ? 'high' : 'auto'}
+  />
+  <span class="photo__label">{photo.label}</span>
   <figcaption>
     Photo: <a href={photo.source} target="_blank" rel="noopener">{photo.author}</a> · {photo.license}
   </figcaption>
@@ -33,11 +42,23 @@ const photo = photos[name];
     object-fit: cover;
     display: block;
   }
+  .photo__label {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    background: rgb(0 0 0 / 0.65);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 99px;
+    max-width: calc(100% - 1rem);
+  }
   figcaption {
     position: absolute;
     right: 0;
     bottom: 0;
-    background: rgb(0 0 0 / 0.55);
+    background: rgb(0 0 0 / 0.6);
     color: #fff;
     font-size: 0.7rem;
     line-height: 1.3;

@@ -2,31 +2,36 @@
 import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import { photos } from '@/data/photos';
+import { campsitePhotos } from '@/lib/gallery';
 import { url, inr } from '@/lib/url';
 
 interface Props {
   pkg: CollectionEntry<'packages'>;
+  headingLevel?: 'h2' | 'h3';
 }
 
-const { pkg } = Astro.props;
+const { pkg, headingLevel: Heading = 'h3' } = Astro.props;
 const d = pkg.data;
-const photo = photos[d.photos[0]];
+const real = campsitePhotos(pkg.id)[0];
+const stock = photos[d.photos[0]];
 const href = url(`packages/${pkg.id}/`);
 ---
 
 <article class="card">
   <a href={href} class="card__media" tabindex="-1" aria-hidden="true">
-    <Image src={photo.src} alt="" widths={[400, 700]} sizes="(min-width: 960px) 25vw, (min-width: 600px) 50vw, 100vw" />
+    <Image src={real?.src ?? stock.src} alt={real ? `${real.caption} at ${d.campsiteShort}` : stock.alt} widths={[400, 700]} sizes="(min-width: 1040px) 25vw, (min-width: 600px) 50vw, 100vw" />
     <span class="card__badge">1 night / 2 days</span>
+    {!real && <span class="card__label">Illustrative photo</span>}
   </a>
   <div class="card__body">
     <ul class="chips">{d.tags.map((t) => <li>{t}</li>)}</ul>
-    <h3><a href={href}>{d.title}</a></h3>
+    <Heading class="card__title"><a href={href}>{d.title}</a></Heading>
+    <p class="card__site">{d.campsiteShort}</p>
     <p>{d.summary}</p>
     <p class="card__runs">{d.runs}</p>
     <div class="card__foot">
       <p class="price"><span>From</span> <strong>{inr(d.price)}</strong> <span>/person</span></p>
-      <a class="btn btn--small" href={href}>View package</a>
+      <a class="btn btn--small" href={href} aria-label={`View ${d.title}`}>View package</a>
     </div>
   </div>
 </article>
@@ -50,15 +55,21 @@ const href = url(`packages/${pkg.id}/`);
     height: 100%;
     object-fit: cover;
   }
-  .card__badge {
+  .card__badge,
+  .card__label {
     position: absolute;
     left: 0.75rem;
-    top: 0.75rem;
     background: rgb(0 0 0 / 0.65);
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 0.2rem 0.6rem;
     border-radius: 99px;
+  }
+  .card__badge {
+    top: 0.75rem;
+  }
+  .card__label {
+    bottom: 0.75rem;
   }
   .card__body {
     display: flex;
@@ -67,22 +78,27 @@ const href = url(`packages/${pkg.id}/`);
     padding: 1rem 1.1rem 1.2rem;
     flex: 1;
   }
-  h3 {
+  .card__title {
     font-size: 1.1rem;
     line-height: 1.3;
     margin: 0;
   }
-  h3 a {
+  .card__title a {
     color: var(--color-text);
     text-decoration: none;
   }
-  h3 a:hover {
+  .card__title a:hover {
     color: var(--color-accent);
   }
   p {
     margin: 0;
     color: var(--color-muted);
     font-size: 0.95rem;
+  }
+  .card__site {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent-dark);
   }
   .card__runs {
     font-size: 0.85rem;

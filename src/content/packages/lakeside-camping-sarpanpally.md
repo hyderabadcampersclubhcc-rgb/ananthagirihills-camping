@@ -1,5 +1,7 @@
 ---
 title: Lakeside Camping Near Hyderabad
+seoTitle: Lakeside Camping Near Hyderabad at Sarpanpally Lake | ₹2,000
+seoDescription: Tents on the bank of Sarpanpally Lake near Vikarabad with a bonfire hour, games, live-kitchen meals and a farm visit. Saturdays, ₹2,000 per person.
 order: 3
 summary: 'Lakeside tents at Sarpanpally Lake near Ananthagiri: bonfire, games, live-kitchen meals and a farm visit.'
 price: 2000
@@ -7,6 +9,7 @@ advance: 500
 tags: [Lakeside, Meals, Bonfire]
 runs: Saturdays (check availability on WhatsApp)
 campsite: Wilderness campsite, Sarpanpally Lake, Godamguda village, Vikarabad
+campsiteShort: Sarpanpally Lake
 location: About 80 to 90 km from Hyderabad
 checkIn: Contact us on WhatsApp to confirm.
 checkOut: 11:00 am (Sunday)
@@ -29,6 +32,13 @@ itinerary:
   - title: Breakfast by the lake
     text: Breakfast from 7 to 10 am, a walk to the organic farm and petting zoo, and check-out at 11 am.
     meals: Breakfast
+meals:
+  - name: High tea
+    detail: 5–6 pm
+  - name: Dinner (veg or non-veg, live kitchen)
+    detail: '8–10 pm. Menu: Contact us on WhatsApp to confirm.'
+  - name: Breakfast
+    detail: '7–10 am. Menu: Contact us on WhatsApp to confirm.'
 included:
   - Lakeside tent stay, 2 sharing
   - High tea, dinner and breakfast (veg or non-veg), from a live kitchen
@@ -78,6 +88,8 @@ compare:
   bestFor: Camping by the water
   meals: High tea, live-kitchen dinner, breakfast
   activities: Beach volleyball, box cricket & football, adventure rope, indoor games, bonfire hour, farm & petting zoo
+  notIncluded: 'Transport; extra food and drinks; optional paid activities (Contact us on WhatsApp to confirm.)'
+chooser: Wake up by the water, with tents on the lake bank, a bonfire hour and a farm visit.
 ---
 
 Wake up beside the water: this campsite sits on the bank of Sarpanpally Lake at Godamguda village, a short drive from the Ananthagiri Hills. Evenings bring high tea, an hour around the bonfire and a live-kitchen dinner. Mornings start with breakfast by the lake and a walk to the organic farm and petting zoo.

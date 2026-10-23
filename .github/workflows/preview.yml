@@ -30,6 +30,11 @@ jobs:
         env:
           SITE_URL: https://${{ github.repository_owner }}.github.io
           BASE_PATH: /${{ github.event.repository.name }}
+      - name: SEO and link checks
+        run: npm run check:all
+        env:
+          SITE_URL: https://${{ github.repository_owner }}.github.io
+          BASE_PATH: /${{ github.event.repository.name }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
