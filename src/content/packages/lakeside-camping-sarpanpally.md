@@ -3,6 +3,7 @@ title: Lakeside Camping Near Hyderabad
 order: 3
 summary: 'Lakeside tents at Sarpanpally Lake near Ananthagiri: bonfire, games, live-kitchen meals and a farm visit.'
 price: 2000
+advance: 500
 tags: [Lakeside, Meals, Bonfire]
 runs: Saturdays (check availability on WhatsApp)
 campsite: Wilderness campsite, Sarpanpally Lake, Godamguda village, Vikarabad
@@ -55,8 +56,8 @@ important:
 payment:
   - 'Check-in time: Contact us on WhatsApp to confirm.'
   - 'Paid activities at the campsite: Contact us on WhatsApp to confirm.'
-  - 'Advance and payment: Contact us on WhatsApp to confirm.'
-  - 'Cancellation and date changes: Contact us on WhatsApp to confirm.'
+  - 'A ₹500 advance payment per person is non-refundable. Balance payment deadline: Contact us on WhatsApp to confirm.'
+  - Cancellations and refunds follow the cancellation & refund policy below.
   - 'GST: Contact us on WhatsApp to confirm.'
   - "Children's policy: Contact us on WhatsApp to confirm."
   - 'Group size: Contact us on WhatsApp to confirm.'

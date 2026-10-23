@@ -6,6 +6,7 @@ import { url, inr } from '@/lib/url';
 const packages = (await getCollection('packages')).sort((a, b) => a.data.order - b.data.order);
 const rows: [string, (d: (typeof packages)[number]['data']) => string][] = [
   ['Price per person', (d) => inr(d.price)],
+  ['Advance (non-refundable)', (d) => (d.advance ? `${inr(d.advance)} per person` : 'Contact us on WhatsApp to confirm.')],
   ['Best for', (d) => d.compare.bestFor],
   ['Runs', (d) => d.runs],
   ['Tent', (d) => d.stay.tent],

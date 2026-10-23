@@ -3,6 +3,7 @@ title: Premium Adventure Camping in Ananthagiri Hills
 order: 2
 summary: Tents, a 10-activity rope course, cycling, sports and a movie night at Harivillu Resort, Ananthagiri Hills.
 price: 2000
+advance: 500
 tags: [Camping, Meals, Adventure]
 runs: Saturdays (check availability on WhatsApp)
 campsite: Harivillu Resort, Ananthagiri Hills, Vikarabad
@@ -53,8 +54,8 @@ important:
   - This resort does not permit unmarried couples (resort rule).
 payment:
   - 'Check-in time: Contact us on WhatsApp to confirm.'
-  - 'Advance and payment: Contact us on WhatsApp to confirm.'
-  - 'Cancellation and date changes: Contact us on WhatsApp to confirm.'
+  - 'A ₹500 advance payment per person is non-refundable. Balance payment deadline: Contact us on WhatsApp to confirm.'
+  - Cancellations and refunds follow the cancellation & refund policy below.
   - 'GST: Contact us on WhatsApp to confirm.'
   - "Children's policy: Contact us on WhatsApp to confirm."
   - 'Group size: Contact us on WhatsApp to confirm.'

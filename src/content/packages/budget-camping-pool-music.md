@@ -60,7 +60,7 @@ carry:
   - Government photo ID
 important:
   - 'Always call or WhatsApp to check availability before booking. No walk-ins: spot entries are not allowed without a booking.'
-  - Book with a ₹500 per head advance; the balance is paid at the campsite at check-in. Share every traveller’s name and age and one Aadhaar copy on WhatsApp to confirm.
+  - A ₹500 advance per person blocks your slot (non-refundable); the remaining ₹1,100 per person is paid after you reach the campsite. Share every traveller’s name and age and one Aadhaar copy on WhatsApp to confirm.
   - Arrive about 10 minutes before check-in; late arrivals may miss meals and activities.
   - Keep valuables with you; don’t leave cash or gold in the tents.
   - Other-state alcohol and hookah are not allowed in the campsite.
@@ -69,8 +69,9 @@ important:
   - Carpooling may be possible depending on group size; it’s confirmed on the day.
   - 'Nearby, on your own: Kotpalli Lake (boating and kayaking), Anantha Padmanabha Swamy Temple, Ananthagiri viewpoint and Damagundam Shiva Temple.'
 payment:
-  - Reserve your seat with ₹500 per person. The HCC team confirms your seat and shares payment details.
-  - The advance payment is non-refundable.
+  - A ₹500 advance payment per person blocks your slot and is non-refundable. The remaining ₹1,100 per person is paid after you reach the campsite.
+  - The HCC team confirms your seat and shares payment details on WhatsApp.
+  - Cancellations and refunds follow the cancellation & refund policy below.
   - 'GST: Contact us on WhatsApp to confirm.'
   - "Children's policy: Contact us on WhatsApp to confirm."
   - 'Group size: Contact us on WhatsApp to confirm.'
@@ -87,7 +88,7 @@ faqs:
   - q: Can I book on my own?
     a: Yes. You can enquire and book individually on WhatsApp. The price is per person, the same whether you come alone or with friends, and you travel to the campsite on your own.
   - q: What if I need to cancel?
-    a: The advance payment is non-refundable. The full cancellation policy is linked under Payment & cancellation.
+    a: The ₹500 advance per person is non-refundable. Any refund on the rest depends on how many days before your date you cancel; the full cancellation & refund policy is linked under Payment & cancellation.
 photos: [campfire, ananthagiri, tents, forest-trek]
 compare:
   bestFor: Pool and Saturday DJ on a budget

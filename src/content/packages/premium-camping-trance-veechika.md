@@ -3,6 +3,7 @@ title: Premium Camping in Ananthagiri Hills
 order: 4
 summary: Premium tents with a pool, sports, bonfire and a guided sunrise trek in the Ananthagiri forest.
 price: 2999
+advance: 500
 tags: [Premium camping, Meals, Pool]
 runs: Saturdays (check availability on WhatsApp)
 campsite: Trance Veechika Resort, Ananthagiri Hills, Vikarabad
@@ -55,8 +56,8 @@ important:
 payment:
   - 'Check-in time: Contact us on WhatsApp to confirm.'
   - 'Rain dance: Contact us on WhatsApp to confirm.'
-  - 'Advance and payment: Contact us on WhatsApp to confirm.'
-  - 'Cancellation and date changes: Contact us on WhatsApp to confirm.'
+  - 'A ₹500 advance payment per person is non-refundable. Balance payment deadline: Contact us on WhatsApp to confirm.'
+  - Cancellations and refunds follow the cancellation & refund policy below.
   - 'GST: Contact us on WhatsApp to confirm.'
   - "Children's policy: Contact us on WhatsApp to confirm."
   - 'Group size: Contact us on WhatsApp to confirm.'

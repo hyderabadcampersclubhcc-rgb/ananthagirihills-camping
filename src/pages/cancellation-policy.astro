@@ -1,49 +1,70 @@
 ---
-/** Camping-relevant parts of the HCC cancellation policy (staging, last updated 5 October 2026). */
+/** Owner-approved cancellation & refund wording (21 October 2026), camping packages only. */
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Rich from '@/components/Rich.astro';
 import site from '@/data/site.json';
 import { url } from '@/lib/url';
-import { CONFIRM, whatsappLink } from '@/lib/whatsapp';
+import { whatsappLink } from '@/lib/whatsapp';
+
+const bands = [
+  ['7 or more days before', 'Cancellation may be considered based on bookings and supplier commitments. Applicable refunds will be processed after deducting non-refundable expenses and payment gateway charges.'],
+  ['3 to 6 days before', '50% refund of the eligible trip amount after applicable deductions.'],
+  ['48 hours to fewer than 3 days before', '50% refund of the eligible trip amount after applicable deductions.'],
+  ['Less than 48 hours before', 'No refund. No transfer or postponement to another trip.'],
+];
 ---
 
-<BaseLayout title="Cancellation & Refund Policy" description="Advance, refunds and cancellations for Ananthagiri Hills camping packages.">
+<BaseLayout title="Cancellation & Refund Policy" description="Advance payment, refunds and cancellations for Ananthagiri Hills camping packages.">
   <main class="wrap page">
     <nav class="crumbs" aria-label="Breadcrumb"><a href={url()}>Home</a> › <span>Cancellation &amp; Refund Policy</span></nav>
     <h1>Cancellation &amp; Refund Policy</h1>
-    <p class="lead">Last updated 5 October 2026</p>
+    <p class="lead">Last updated 21 October 2026</p>
 
-    <h2>Camping packages</h2>
+    <h2>Advance payment</h2>
+    <ul>
+      <li>
+        <a href={url('packages/budget-camping-pool-music/')}>Budget Camping with Pool &amp; Music</a>: A ₹500 advance payment per person
+        blocks your slot and is non-refundable. The remaining ₹1,100 per person is paid after you reach the campsite.
+      </li>
+      <li>
+        <a href={url('packages/adventure-camping-harivillu/')}>Harivillu Resort</a>,
+        <a href={url('packages/lakeside-camping-sarpanpally/')}>Sarpanpally Lake</a> and
+        <a href={url('packages/premium-camping-trance-veechika/')}>Trance Veechika</a>: A ₹500 advance payment per person is non-refundable.
+        Balance payment deadline: <a class="confirm" href={whatsappLink('Hi, what is the balance payment deadline for my camping booking?')} target="_blank" rel="noopener">Contact us on WhatsApp to confirm.</a>
+      </li>
+      <li>
+        The eligible trip amount is the amount paid, excluding the non-refundable advance. A 50% refund is 50% of the eligible trip
+        amount, less applicable deductions.
+      </li>
+      <li>Days are counted before the departure date. The cancellation date is the day we receive your message.</li>
+    </ul>
+
+    <h2>If you cancel</h2>
     <div class="table-scroll">
       <table>
         <thead>
-          <tr><th scope="col">Campsite</th><th scope="col">Cancellation rule</th></tr>
+          <tr><th scope="col">When you cancel</th><th scope="col">Refund</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td><a href={url('packages/budget-camping-pool-music/')}>Budget Camping with Pool &amp; Music</a></td>
-            <td>The ₹500 per head advance is non-refundable.</td>
-          </tr>
-          <tr>
-            <td>
-              <a href={url('packages/adventure-camping-harivillu/')}>Harivillu Resort</a>,
-              <a href={url('packages/lakeside-camping-sarpanpally/')}>Sarpanpally Lake</a> and
-              <a href={url('packages/premium-camping-trance-veechika/')}>Trance Veechika</a> camping
-            </td>
-            <td>Not confirmed yet. <Rich text={CONFIRM} topic="the cancellation policy" /></td>
-          </tr>
+          {
+            bands.map(([when, rule]) => (
+              <tr>
+                <th scope="row">{when} departure</th>
+                <td>{rule}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>
+    <p>Work commitments, personal reasons, health issues or other last-minute circumstances do not qualify for a refund.</p>
 
-    <h2>Missed check-in</h2>
-    <p>Please reach the campsite on time. Late arrivals may miss meals and activities.</p>
-
-    <h2>If the plan changes</h2>
-    <ul>
-      <li>Activities depend on the weather and may change for safety.</li>
-      <li>Ask before you book: we confirm the exact terms for your date on WhatsApp.</li>
-    </ul>
+    <h2>Cancellation or postponement by the organiser</h2>
+    <p>
+      The organiser reserves the right to cancel, postpone, modify or reschedule a trip due to insufficient participants, severe weather
+      conditions, natural disasters, political or local situations, transport cancellations, government restrictions or other
+      circumstances beyond its control. If the organiser cancels a trip, participants will be offered an alternative available trip or a
+      full refund, as applicable.
+    </p>
 
     <h2>How to cancel</h2>
     <p>
@@ -70,7 +91,16 @@ import { CONFIRM, whatsappLink } from '@/lib/whatsapp';
     font-size: 1.3rem;
     margin-top: 2.25rem;
   }
+  ul {
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.6rem;
+  }
   table {
     min-width: 0;
+  }
+  tbody th {
+    font-weight: 600;
+    width: 40%;
   }
 </style>
