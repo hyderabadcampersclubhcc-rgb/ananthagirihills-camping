@@ -1,0 +1,53 @@
+---
+/**
+ * Page shell. Every page is noindex unless the build sets PUBLIC_ALLOW_INDEXING=true
+ * (production only), so staging and local builds can never be indexed by accident.
+ */
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true' && !noindex;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={allowIndexing ? 'index, follow' : 'noindex, follow'} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --color-bg: #fbfaf7;
+    --color-text: #1f2a24;
+    --color-muted: #5b665f;
+    --color-accent: #2f6b4f;
+    --font-body: ui-sans-serif, system-ui, sans-serif;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,109 @@
+name: Build & deploy
+
+# push to main  -> staging
+# nightly cron  -> staging (and production once PRODUCTION_LIVE=true)
+# manual run    -> staging or production
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '35 18 * * *' # 00:05 IST
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Where to deploy
+        type: choice
+        options: [staging, production]
+        default: staging
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  staging:
+    if: github.event_name != 'workflow_dispatch' || inputs.target == 'staging'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx astro check
+      - run: npm run build
+        env:
+          SITE_URL: ${{ vars.STAGING_URL }}
+          PRODUCTION_HOST: ${{ vars.PRODUCTION_HOST }}
+      - name: Normalise FTP login
+        id: ftp
+        run: |
+          host=$(printf '%s' "$RAW_HOST" | tr -d '[:space:]' | sed -E 's#^[a-zA-Z]+://##; s#/.*$##; s#:[0-9]+$##')
+          user=$(printf '%s' "$RAW_USER" | tr -d '[:space:]')
+          pass=$(printf '%s' "$RAW_PASS" | tr -d '\r\n')
+          for v in host user pass; do if [ -z "${!v}" ]; then echo "::error::FTP secret for $v is empty"; exit 1; fi; done
+          echo "::add-mask::$host"; echo "::add-mask::$user"; echo "::add-mask::$pass"
+          { echo "host=$host"; echo "user=$user"; echo "pass=$pass"; } >> "$GITHUB_OUTPUT"
+        env:
+          RAW_HOST: ${{ secrets.FTP_SERVER }}
+          RAW_USER: ${{ secrets.FTP_USERNAME }}
+          RAW_PASS: ${{ secrets.FTP_PASSWORD }}
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ steps.ftp.outputs.host }}
+          username: ${{ steps.ftp.outputs.user }}
+          password: ${{ steps.ftp.outputs.pass }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          local-dir: ./dist/
+          server-dir: ${{ vars.STAGING_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            api/config.php
+
+  production:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.target == 'production') ||
+      (github.event_name != 'workflow_dispatch' && vars.PRODUCTION_LIVE == 'true')
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx astro check
+      - run: npm run build
+        env:
+          SITE_URL: https://${{ vars.PRODUCTION_HOST }}
+          PRODUCTION_HOST: ${{ vars.PRODUCTION_HOST }}
+          PUBLIC_ALLOW_INDEXING: 'true'
+      - name: Normalise FTP login
+        id: ftp
+        run: |
+          host=$(printf '%s' "$RAW_HOST" | tr -d '[:space:]' | sed -E 's#^[a-zA-Z]+://##; s#/.*$##; s#:[0-9]+$##')
+          user=$(printf '%s' "$RAW_USER" | tr -d '[:space:]')
+          pass=$(printf '%s' "$RAW_PASS" | tr -d '\r\n')
+          for v in host user pass; do if [ -z "${!v}" ]; then echo "::error::FTP secret for $v is empty"; exit 1; fi; done
+          echo "::add-mask::$host"; echo "::add-mask::$user"; echo "::add-mask::$pass"
+          { echo "host=$host"; echo "user=$user"; echo "pass=$pass"; } >> "$GITHUB_OUTPUT"
+        env:
+          RAW_HOST: ${{ secrets.FTP_SERVER }}
+          RAW_USER: ${{ secrets.FTP_USERNAME }}
+          RAW_PASS: ${{ secrets.FTP_PASSWORD }}
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ steps.ftp.outputs.host }}
+          username: ${{ steps.ftp.outputs.user }}
+          password: ${{ steps.ftp.outputs.pass }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          local-dir: ./dist/
+          server-dir: ${{ vars.PRODUCTION_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            api/config.php
