@@ -64,22 +64,22 @@ that will hold its files.
 
 | # | Item | Who |
 |---|---|---|
-| 5.1 | Privacy policy page covering analytics, ads cookies and WhatsApp enquiries (draft) | Claude |
-| 5.2 | Approve the privacy policy wording and the business details in it | Owner |
-| 5.3 | GA4 property and Measurement ID (`G-…`); can be HCC's existing property with a separate data stream | Owner |
-| 5.4 | Cookie consent banner with Google Consent Mode v2 (analytics and ads denied until accepted) | Claude |
-| 5.5 | GA4 events: `generate_lead` (enquiry sent to WhatsApp), `whatsapp_click`, `phone_click`, `view_item` (package pages). Production only, after consent | Claude |
+| 5.1 | Privacy policy page drafted at `/privacy-policy/` (shows a draft notice and is noindex until approved; a production build fails its SEO check while it is a draft) | Done (25 Oct) |
+| 5.2 | Answer the 4 "Owner to confirm" boxes on the policy page (business name/address/email, sharing with campsites and retention, hosting logs, who handles privacy requests), then approve the wording; Claude sets `approved: true` | Owner |
+| 5.3 | GA4 property and Measurement ID (`G-…`), set as GitHub variable `GA4_ID` | Owner |
+| 5.4 | Cookie consent banner with Consent Mode v2 "basic": all consent denied by default and gtag.js not requested until Accept; Reject/Accept equal weight; "Cookie settings" link in the footer | Done (25 Oct) |
+| 5.5 | GA4 events `generate_lead`, `whatsapp_click`, `phone_click`, `view_item`; only after consent. Tested locally with dummy IDs | Done (25 Oct) |
 | 5.6 | Link Search Console to GA4 | Owner |
 
 ## 6. Google Ads conversion tracking
 
 | # | Item | Who |
 |---|---|---|
-| 6.1 | Google Ads account, conversion actions and their IDs/labels (`AW-…/…`) | Owner |
+| 6.1 | Google Ads account and conversion actions; set GitHub variables `ADS_ID` (`AW-…`) and the labels | Owner |
 | 6.2 | Conversions: enquiry sent to WhatsApp (primary), WhatsApp clicks and phone clicks (secondary). These are **enquiries, not bookings**; set values accordingly | Together |
-| 6.3 | Ads tag behind the same consent banner, firing on the 5.5 events | Claude |
+| 6.3 | Ads tag behind the same consent banner, firing conversions on the 5.5 events (labels from `ADS_LEAD_LABEL`, `ADS_WHATSAPP_LABEL`, `ADS_CALL_LABEL`) | Done (25 Oct) |
 | 6.4 | Optional later: import confirmed bookings as offline conversions | Owner |
-| 6.5 | Test with Google Tag Assistant before production | Together |
+| 6.5 | Test with Google Tag Assistant on staging (`STAGING_TRACKING=true`) before production | Together |
 
 ## 7. Launch day (after your approval)
 

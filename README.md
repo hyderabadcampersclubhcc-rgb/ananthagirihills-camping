@@ -54,6 +54,14 @@ Set these in GitHub → Settings → Secrets and variables → Actions:
 | Variable | `PRODUCTION_DIR` | `./` |
 | Variable | `FTP_PROTOCOL` | optional, default `ftps` |
 | Variable | `PRODUCTION_LIVE` | **only at go-live** |
+| Variable | `GA4_ID` | `G-…` (optional; tracking stays off without it) |
+| Variable | `ADS_ID` | `AW-…` (optional) |
+| Variable | `ADS_LEAD_LABEL`, `ADS_WHATSAPP_LABEL`, `ADS_CALL_LABEL` | Google Ads conversion labels (optional) |
+| Variable | `STAGING_TRACKING` | `true` only while testing tags on staging |
+
+Tracking (GA4 + Google Ads) loads only when an ID is set **and** the privacy policy is approved
+(`src/data/privacy.ts`), and even then only after the visitor accepts the cookie banner. The GitHub Pages
+preview never has tracking.
 
 Also create two environments (Settings → Environments): `staging` and `production`, and restrict
 `production` to the `main` branch.

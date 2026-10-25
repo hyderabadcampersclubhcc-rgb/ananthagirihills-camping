@@ -1,0 +1,140 @@
+---
+/**
+ * Cookie consent + Google tags (GA4, Google Ads), rendered only when tracking is enabled (src/lib/tracking.ts).
+ * Consent Mode v2 "basic": every consent type defaults to denied and gtag.js is not requested at all until the
+ * visitor accepts. Choice stored in localStorage; the footer's "Cookie settings" button reopens the banner.
+ *
+ * Events (sent only after consent):
+ *   generate_lead   enquiry form sent to WhatsApp (+ Ads conversion PUBLIC_ADS_LEAD_LABEL)
+ *   whatsapp_click  any wa.me link            (+ Ads conversion PUBLIC_ADS_WHATSAPP_LABEL)
+ *   phone_click     any tel: link             (+ Ads conversion PUBLIC_ADS_CALL_LABEL)
+ *   view_item       package page view
+ */
+import { trackingConfig } from '@/lib/tracking';
+import { url } from '@/lib/url';
+---
+
+<div class="consent" data-consent hidden role="region" aria-label="Cookie consent">
+  <p>
+    We'd like to use Google Analytics and Google Ads cookies to see how visitors use this site and which ads lead to enquiries. Nothing
+    is loaded unless you accept. <a href={url('privacy-policy/')}>Privacy policy</a>
+  </p>
+  <div class="consent__buttons">
+    <!-- Equal weight for both choices, so rejecting is as easy as accepting. -->
+    <button type="button" class="btn btn--small" data-consent-choice="denied">Reject</button>
+    <button type="button" class="btn btn--small" data-consent-choice="granted">Accept</button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ config: trackingConfig }}>
+  (() => {
+    const KEY = 'camping-consent-v1';
+    const read = () => {
+      try {
+        return JSON.parse(localStorage.getItem(KEY) || 'null')?.choice ?? null;
+      } catch {
+        return null;
+      }
+    };
+    const save = (choice) => {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ choice, at: new Date().toISOString() }));
+      } catch {
+        /* private mode: the banner simply shows again next visit */
+      }
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    const gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+
+    let loaded = false;
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied', analytics_storage: 'granted' });
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.ga4 || config.ads)}`;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      if (config.ga4) gtag('config', config.ga4);
+      if (config.ads) gtag('config', config.ads);
+      const pkg = document.querySelector('[data-package]')?.dataset.package;
+      if (pkg && config.ga4) gtag('event', 'view_item', { items: [{ item_name: pkg }] });
+    };
+
+    // Events go to Google only after consent; before that they are dropped, never queued.
+    const track = (name, params, label) => {
+      if (!loaded) return;
+      if (config.ga4) gtag('event', name, params);
+      if (config.ads && label) gtag('event', 'conversion', { send_to: `${config.ads}/${label}` });
+    };
+    window.campingTrack = track;
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest?.('a[href]');
+      if (!a) return;
+      const where = a.closest('[data-package]')?.dataset.package || document.title;
+      if (a.href.startsWith('https://wa.me/')) track('whatsapp_click', { link_text: a.textContent.trim().slice(0, 60), page_package: where }, config.labels.whatsapp);
+      else if (a.href.startsWith('tel:')) track('phone_click', { page_package: where }, config.labels.call);
+    });
+    document.addEventListener('enquiry-sent', (e) => track('generate_lead', { item_name: e.detail.title, guests: e.detail.guests, has_date: e.detail.hasDate }, config.labels.lead));
+
+    const banner = document.querySelector('[data-consent]');
+    const decide = (choice) => {
+      save(choice);
+      banner.hidden = true;
+      if (choice === 'granted') load();
+      else if (loaded) location.reload(); // withdrawing consent: reload so Google tags stop running
+    };
+    banner.querySelectorAll('[data-consent-choice]').forEach((b) => b.addEventListener('click', () => decide(b.dataset.consentChoice)));
+    document.querySelectorAll('[data-consent-open]').forEach((b) =>
+      b.addEventListener('click', () => {
+        banner.hidden = false;
+        banner.querySelector('[data-consent-choice="granted"]').focus();
+      }),
+    );
+
+    const choice = read();
+    if (choice === 'granted') load();
+    else if (choice !== 'denied') banner.hidden = false;
+  })();
+</script>
+
+<style>
+  .consent {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 40;
+    max-width: 34rem;
+    margin-left: auto;
+    display: grid;
+    gap: 0.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    box-shadow: 0 12px 40px rgb(31 42 36 / 0.18);
+    font-size: 0.9rem;
+  }
+  .consent[hidden] {
+    display: none;
+  }
+  .consent p {
+    margin: 0;
+  }
+  .consent__buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+  .consent__buttons .btn {
+    min-width: 6.5rem;
+    min-height: 2.75rem;
+  }
+</style>

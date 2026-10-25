@@ -84,6 +84,8 @@ const fallback = whatsappLink(`Hi, I want to enquire about ${title}.`);
         `Estimated total: ${inr(n * Number(price))}`,
         'Please confirm availability.',
       ].join('\n');
+      // Measured only if tracking is on and the visitor accepted cookies (see Consent.astro).
+      document.dispatchEvent(new CustomEvent('enquiry-sent', { detail: { title, guests: n, hasDate: Boolean(data.get('date')) } }));
       window.open(`${form.action.split('?')[0]}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
     });
   }

@@ -85,7 +85,7 @@ const schema = {
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
 
-  <main class="wrap">
+  <main class="wrap" data-package={d.title}>
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
         <li><a href={url()}>Home</a></li>

@@ -1,0 +1,199 @@
+---
+/**
+ * Privacy policy. DRAFT until src/data/privacy.ts says approved: while a draft it carries a visible notice
+ * and is noindex. Items marked "Owner to confirm" must be answered before approval. Not legal advice.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import site from '@/data/site.json';
+import { privacyPolicy } from '@/data/privacy';
+import { url } from '@/lib/url';
+import { whatsappLink } from '@/lib/whatsapp';
+
+const draft = !privacyPolicy.approved;
+---
+
+<BaseLayout
+  title="Privacy Policy | Ananthagiri Hills Camping"
+  description="How Ananthagiri Hills Camping, run by Hyderabad Campers Club, handles enquiries, booking details, cookies, analytics and Google Ads measurement."
+  noindex={draft}
+>
+  <main class="wrap page">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={url()}>Home</a></li>
+        <li><span aria-current="page">Privacy Policy</span></li>
+      </ol>
+    </nav>
+
+    {
+      draft && (
+        <p class="draft" role="note">
+          <strong>Draft for review.</strong> This policy has not been approved yet. Items marked "Owner to confirm" need an answer
+          before it is published.
+        </p>
+      )
+    }
+
+    <h1>Privacy Policy</h1>
+    <p class="lead">Last updated {privacyPolicy.lastUpdated}</p>
+
+    <h2>Who we are</h2>
+    <p>
+      This website is run by {site.operator} (<a href={site.mainSite}>{site.mainSite.replace(/^https:\/\/|\/$/g, '')}</a>). It lists
+      overnight camping packages in the Ananthagiri Hills near Vikarabad and takes enquiries on WhatsApp and by phone. In this policy,
+      "we" means {site.operator}.
+    </p>
+    {draft && <p class="todo">Owner to confirm: registered business name, postal address and an email address for privacy requests.</p>}
+
+    <h2>What we collect and why</h2>
+    <h3>When you send an enquiry</h3>
+    <p>
+      The enquiry form on each package page does not send anything to our servers. When you tap "Send enquiry on WhatsApp", your
+      browser opens WhatsApp with a message containing the package name, the date you chose (if any), the number of guests and your
+      name. Nothing is sent until you press send in WhatsApp. After that, we receive the message and your WhatsApp number, and we use
+      them to reply about availability.
+    </p>
+    <p>
+      WhatsApp is run by WhatsApp LLC (Meta). Their privacy policy applies to messages sent through WhatsApp.
+    </p>
+
+    <h3>When you book</h3>
+    <p>
+      To confirm a booking we ask, on WhatsApp, for each traveller's name and age and, for some campsites, one government ID copy
+      (for example Aadhaar). Campsites check ID at check-in. We use these details only to reserve your place, to share the guest list
+      with the campsite hosting you, and to handle payments, changes and cancellations.
+    </p>
+    {
+      draft && (
+        <p class="todo">
+          Owner to confirm: whether guest details and ID copies are shared with each campsite; how long WhatsApp chats, ID copies and
+          payment records are kept, and how they are deleted.
+        </p>
+      )
+    }
+
+    <h3>When you call us</h3>
+    <p>If you call {site.phone}, we see your phone number and use it to answer your question.</p>
+
+    <h3>Website server logs</h3>
+    <p>
+      Our hosting provider records standard server logs (such as IP address, browser type, the page requested and the time) to keep
+      the website secure and working.
+    </p>
+    {draft && <p class="todo">Owner to confirm: hosting provider (Hostinger) and how long it keeps logs.</p>}
+
+    <h2>Cookies, analytics and advertising</h2>
+    <p>
+      The website works without cookies. We use Google Analytics and Google Ads measurement <strong>only if you agree</strong> in the
+      cookie banner. Until you accept, nothing is loaded from Google.
+    </p>
+    <ul>
+      <li>
+        <strong>Google Analytics 4</strong> helps us understand how visitors use the website: pages viewed, the device and approximate
+        location (city level), and whether an enquiry was started on WhatsApp or by phone.
+      </li>
+      <li>
+        <strong>Google Ads conversion measurement</strong> tells us whether a visit from one of our Google ads led to an enquiry (an
+        enquiry sent to WhatsApp, a WhatsApp click or a phone click). It does not tell us who you are.
+      </li>
+    </ul>
+    <p>
+      These tools set cookies such as <code>_ga</code>, <code>_ga_*</code> and <code>_gcl_*</code>. Google processes this data under its
+      own policies. We do not sell your personal data.
+    </p>
+    <p>
+      You can change your choice at any time with the <strong>Cookie settings</strong> link at the bottom of every page, or by clearing
+      this site's cookies in your browser. Your choice is remembered on your device.
+    </p>
+
+    <h2>Who we share data with</h2>
+    <ul>
+      <li>The campsite hosting your stay, to arrange your booking and check-in.</li>
+      <li>WhatsApp (Meta), as the service you use to message us.</li>
+      <li>Google, only if you accept analytics and advertising cookies.</li>
+      <li>Our hosting provider, which stores the website and its server logs.</li>
+      <li>Authorities, where the law requires it.</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>
+      Under India's Digital Personal Data Protection Act, 2023, you can ask us to tell you what personal data we hold about you, to
+      correct or update it, or to delete it when it is no longer needed for your booking or a legal requirement. You can also withdraw
+      consent you have given, for example for cookies.
+    </p>
+    <p>
+      To make a request or a complaint, message us on <a href={whatsappLink('Hi, I have a privacy request about my personal data.')} target="_blank" rel="noopener">WhatsApp</a> or call
+      <a href={site.phoneHref}>{site.phone}</a>.
+    </p>
+    {draft && <p class="todo">Owner to confirm: the person who handles privacy requests and complaints, and an email address for them.</p>}
+
+    <h2>Children</h2>
+    <p>
+      This website is meant for adults planning trips. Bookings that include children are made by a parent or guardian, who provides the
+      children's details.
+    </p>
+
+    <h2>Security</h2>
+    <p>
+      The website is served over HTTPS. Booking details are shared over WhatsApp, and we limit who in our team can see them.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>If we change how we use personal data, we will update this page and the "Last updated" date.</p>
+  </main>
+</BaseLayout>
+
+<style>
+  .page {
+    max-width: 48rem;
+  }
+  .crumbs {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    padding-top: 1.25rem;
+  }
+  .crumbs ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .crumbs li:not(:last-child)::after {
+    content: '›';
+    margin-left: 0.35rem;
+  }
+  h1 {
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    margin: 1rem 0 0.25rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 2.25rem;
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin: 1.5rem 0 0.4rem;
+  }
+  ul {
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .draft,
+  .todo {
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+  }
+  .draft {
+    margin-top: 1rem;
+    background: #fff4d6;
+    border: 1px solid #e8c56b;
+  }
+  .todo {
+    background: #fff8e8;
+    border-left: 4px solid #e0a43a;
+  }
+</style>

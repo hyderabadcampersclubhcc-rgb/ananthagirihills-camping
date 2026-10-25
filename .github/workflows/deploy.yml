@@ -28,6 +28,13 @@ jobs:
     env:
       # Until the FTP secrets are added the job only builds and checks; the upload steps are skipped.
       HAS_FTP: ${{ secrets.FTP_SERVER != '' }}
+      # Staging tracking only for testing tags (Tag Assistant): set STAGING_TRACKING=true plus the IDs.
+      PUBLIC_ENABLE_TRACKING: ${{ vars.STAGING_TRACKING }}
+      PUBLIC_GA4_ID: ${{ vars.GA4_ID }}
+      PUBLIC_ADS_ID: ${{ vars.ADS_ID }}
+      PUBLIC_ADS_LEAD_LABEL: ${{ vars.ADS_LEAD_LABEL }}
+      PUBLIC_ADS_WHATSAPP_LABEL: ${{ vars.ADS_WHATSAPP_LABEL }}
+      PUBLIC_ADS_CALL_LABEL: ${{ vars.ADS_CALL_LABEL }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -81,6 +88,12 @@ jobs:
     environment: production
     env:
       HAS_FTP: ${{ secrets.FTP_SERVER != '' }}
+      # Tracking stays off until these GitHub variables are set AND the privacy policy is approved (src/data/privacy.ts).
+      PUBLIC_GA4_ID: ${{ vars.GA4_ID }}
+      PUBLIC_ADS_ID: ${{ vars.ADS_ID }}
+      PUBLIC_ADS_LEAD_LABEL: ${{ vars.ADS_LEAD_LABEL }}
+      PUBLIC_ADS_WHATSAPP_LABEL: ${{ vars.ADS_WHATSAPP_LABEL }}
+      PUBLIC_ADS_CALL_LABEL: ${{ vars.ADS_CALL_LABEL }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5

@@ -54,7 +54,8 @@ for (const file of pages) {
 
   if (!robots) fail(page, 'missing robots meta');
   const wantsIndex = production && !is404;
-  if (wantsIndex && !robots.startsWith('index')) fail(page, `robots is "${robots}" in a production build`);
+  if (wantsIndex && !robots.startsWith('index'))
+    fail(page, page === 'privacy-policy/index.html' ? 'privacy policy is still a draft: approve it (src/data/privacy.ts) before a production deploy' : `robots is "${robots}" in a production build`);
   if (!production && !robots.startsWith('noindex')) fail(page, `robots is "${robots}" outside production`);
   if (robots.startsWith('index')) indexable.push(canonical);
 
@@ -85,6 +86,11 @@ for (const file of pages) {
       for (const q of data.mainEntity) if (!visible.includes(q.name)) fail(page, `FAQ schema question not visible: "${q.name}"`);
     }
   }
+
+  // Tracking: never in builds without IDs, and gtag.js is only ever injected after consent (never in the HTML).
+  const trackingIds = process.env.PUBLIC_GA4_ID || process.env.PUBLIC_ADS_ID;
+  if (!trackingIds && /googletagmanager|data-consent[ >]/.test(html)) fail(page, 'tracking code present in a build without tracking IDs');
+  if (/<script[^>]+src="https:\/\/www\.googletagmanager\.com/.test(html)) fail(page, 'gtag.js loaded before consent');
 
   for (const [img] of html.matchAll(/<img\s[^>]*>/g)) if (!/\salt="/.test(img)) fail(page, `image without alt: ${img.slice(0, 80)}`);
 }
