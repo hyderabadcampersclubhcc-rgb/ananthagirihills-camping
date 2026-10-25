@@ -39,7 +39,7 @@ jobs:
       - run: npm run build
         env:
           SITE_URL: ${{ vars.STAGING_URL }}
-          PRODUCTION_HOST: ${{ vars.PRODUCTION_HOST }}
+          PRODUCTION_HOST: ${{ vars.PRODUCTION_HOST || 'camping.hyderabadcampersclubhcc.in' }}
       - name: SEO and link checks
         if: vars.STAGING_URL != ''
         run: npm run check:all
@@ -91,13 +91,13 @@ jobs:
       - run: npx astro check
       - run: npm run build
         env:
-          SITE_URL: https://${{ vars.PRODUCTION_HOST }}
-          PRODUCTION_HOST: ${{ vars.PRODUCTION_HOST }}
+          SITE_URL: https://${{ vars.PRODUCTION_HOST || 'camping.hyderabadcampersclubhcc.in' }}
+          PRODUCTION_HOST: ${{ vars.PRODUCTION_HOST || 'camping.hyderabadcampersclubhcc.in' }}
           PUBLIC_ALLOW_INDEXING: 'true'
       - name: SEO and link checks
         run: npm run check:all
         env:
-          SITE_URL: https://${{ vars.PRODUCTION_HOST }}
+          SITE_URL: https://${{ vars.PRODUCTION_HOST || 'camping.hyderabadcampersclubhcc.in' }}
           PUBLIC_ALLOW_INDEXING: 'true'
       - name: Normalise FTP login
         if: env.HAS_FTP == 'true'

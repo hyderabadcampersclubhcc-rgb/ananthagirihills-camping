@@ -4,10 +4,11 @@
 // images with alt text, and (production builds) a sitemap listing exactly the indexable pages.
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
+import { PRODUCTION_HOST } from '../site.config.mjs';
 
 const dist = path.resolve('dist');
 const production = process.env.PUBLIC_ALLOW_INDEXING === 'true';
-const site = new URL(process.env.SITE_URL || `https://${process.env.PRODUCTION_HOST || 'example.com'}`);
+const site = new URL(process.env.SITE_URL || `https://${process.env.PRODUCTION_HOST || PRODUCTION_HOST}`);
 const pages = [];
 const walk = (dir) =>
   readdirSync(dir).forEach((f) => {

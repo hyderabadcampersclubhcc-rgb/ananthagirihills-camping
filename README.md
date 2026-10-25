@@ -48,9 +48,9 @@ Set these in GitHub → Settings → Secrets and variables → Actions:
 | Secret | `FTP_SERVER` | FTP host from Hostinger |
 | Secret | `FTP_USERNAME` | FTP user for this site |
 | Secret | `FTP_PASSWORD` | FTP password |
-| Variable | `STAGING_URL` | `https://staging.<DOMAIN>` |
+| Variable | `STAGING_URL` | optional, e.g. `https://staging-camping.hyderabadcampersclubhcc.in` |
 | Variable | `STAGING_DIR` | `staging/` |
-| Variable | `PRODUCTION_HOST` | `<DOMAIN>` (no `https://`, no `www`) |
+| Variable | `PRODUCTION_HOST` | optional override; defaults to `camping.hyderabadcampersclubhcc.in` (`site.config.mjs`) |
 | Variable | `PRODUCTION_DIR` | `./` |
 | Variable | `FTP_PROTOCOL` | optional, default `ftps` |
 | Variable | `PRODUCTION_LIVE` | **only at go-live** |

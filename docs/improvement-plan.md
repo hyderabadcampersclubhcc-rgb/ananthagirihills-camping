@@ -117,6 +117,9 @@ Minimum to replace stock photos: items 1, 2, 3, 4 and 6 for each campsite (20 ph
 
 ## 6. Production domain readiness
 
+**Update 25 Oct 2026:** domain confirmed as `camping.hyderabadcampersclubhcc.in` and set in `site.config.mjs`.
+The current step-by-step list is `docs/domain-hosting-checklist.md`; the notes below are the original plan.
+
 Already in place: `SITE_URL` and `PRODUCTION_HOST` drive canonical URLs, sitemap and `.htaccess`; production is
 the only build with `index` and a populated sitemap. When you confirm the domain:
 1. Set GitHub variables `PRODUCTION_HOST` (and `STAGING_URL`); nothing in the code needs a domain edit.

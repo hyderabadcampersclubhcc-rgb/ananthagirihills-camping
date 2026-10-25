@@ -38,6 +38,7 @@ const business = {
       url: home,
       telephone: site.phone.replace(/\s/g, ''),
       areaServed: 'Hyderabad, Telangana',
+      sameAs: [site.mainSite],
     },
     { '@type': 'WebSite', '@id': `${home}#website`, name: site.name, url: home, inLanguage: 'en-IN', publisher: { '@id': `${home}#business` } },
   ],
