@@ -3,7 +3,7 @@ title: Premium Adventure Camping in Ananthagiri Hills
 seoTitle: Adventure Camping at Harivillu Resort, Ananthagiri | ₹2,000
 seoDescription: Two-person tents, a rope course of about 10 activities, cycling, short trek, bonfire and movie night. Saturdays, 1 night / 2 days, ₹2,000 per person.
 order: 2
-summary: Tents, a 10-activity rope course, cycling, sports and a movie night at Harivillu Resort, Ananthagiri Hills.
+summary: A Saturday-night camp at Harivillu Resort built around a rope course of about ten activities, with cycling, a short trek and an outdoor movie.
 price: 2000
 advance: 500
 tags: [Camping, Meals, Adventure]
@@ -18,19 +18,19 @@ returns: Check out at 11:00 am on Sunday and head back on your own
 stay:
   tent: Tent, 2 sharing
   washroom: Common washroom
-  description: Two-person camping tents at the resort.
+  description: Camping tents for two, set up in the grounds of Harivillu Resort.
 suitableFor: [Groups of friends, Families, Office groups]
 highlights:
-  - Rope adventure course with about 10 activities
-  - Cycling and a short trek
+  - A rope adventure course of roughly ten activities
+  - Cycling, plus a short trek
   - Box cricket, sand volleyball, badminton, table tennis and carrom
-  - Music, bonfire and an open-air movie screening (weather permitting)
+  - Music and a bonfire after dark, with an outdoor movie when the weather is clear
 itinerary:
-  - title: Check in, rope course and movie night
-    text: 'Check in and settle into your two-person tent (check-in time: Contact us on WhatsApp to confirm.) Evening tea with samosa, then the rope adventure course, cycling and a short trek. Box cricket, sand volleyball, badminton, table tennis and carrom until dark. Music and a bonfire at night, a movie screening if the weather allows, then dinner.'
+  - title: Rope course, games and a movie under the sky
+    text: 'Arrive and settle into your two-person tent (check-in time: Contact us on WhatsApp to confirm.) After tea and samosa, head out for the rope course, a cycle ride and a short trek. Until it gets dark there is box cricket, sand volleyball, badminton, table tennis and carrom. The night brings music and a bonfire, an open-air film if the weather holds, and then dinner.'
     meals: Snacks, Dinner
-  - title: Breakfast and check-out
-    text: Breakfast, free time for games or cycling, and check-out at 11 am.
+  - title: Slow Sunday morning
+    text: Have breakfast, use the free time for a last game or a ride on the cycles, and check out by 11 am.
     meals: Breakfast
 meals:
   - name: Evening tea with samosa
@@ -40,28 +40,28 @@ meals:
   - name: Breakfast
     detail: 'Before check-out. Menu: Contact us on WhatsApp to confirm.'
 included:
-  - Tent stay, 2 sharing
-  - Evening tea with samosa, dinner and breakfast
-  - Rope adventure activities, cycling and a short trek
+  - A night in a two-person tent
+  - Tea and samosa in the evening, then dinner and breakfast
+  - The rope course activities, cycling and the short trek
   - Outdoor sports and indoor games
-  - Music, bonfire and movie screening (weather permitting)
+  - Music, the bonfire and the movie screening (weather permitting)
 notIncluded:
-  - Transport to and from the campsite
-  - Cottage stays (separate, not part of this camping package)
-  - Extra food and drinks
-  - Anything not listed under inclusions
+  - Travel to and from the resort
+  - Cottage rooms, which are booked separately and are not part of this package
+  - Any food or drink beyond the meals listed
+  - Anything not named in the included list
 carry:
   - Government photo ID
-  - A change of clothes and comfortable shoes
-  - A light jacket for the night
-  - Torch, toiletries and any personal medicines
+  - Comfortable shoes and a spare set of clothes
+  - A light jacket for the evening
+  - A torch, your toiletries and any medicines you take
 important:
-  - Transport to the campsite is not included. Self-drive, or reach Vikarabad by train or bus and take an auto or cab.
-  - Carry a valid government photo ID for every guest; it is checked at check-in.
-  - Activities depend on the weather and may change for safety.
-  - Check availability on WhatsApp before you travel; the camp runs on Saturdays with check-out on Sunday.
-  - 'Resort rules: no hookah, and vehicles stay off the lawn.'
-  - This resort does not permit unmarried couples (resort rule).
+  - There is no transport from Hyderabad. Drive down, or take a train or bus to Vikarabad and an auto or cab from there.
+  - Every guest needs a valid government photo ID, which is checked when you check in.
+  - Activities depend on the weather and can change for safety reasons.
+  - The camp runs on Saturday nights with check-out on Sunday. Confirm your date on WhatsApp before you set off.
+  - 'Resort rules: no hookah, and keep vehicles off the lawn.'
+  - Harivillu Resort does not allow unmarried couples (this is the resort's own rule).
 payment:
   - 'Check-in time: Contact us on WhatsApp to confirm.'
   - 'A ₹500 advance payment per person is non-refundable. Balance payment deadline: Contact us on WhatsApp to confirm.'
@@ -71,16 +71,18 @@ payment:
   - 'Group size: Contact us on WhatsApp to confirm.'
   - 'Safety arrangements: Contact us on WhatsApp to confirm.'
 faqs:
-  - q: What adventure activities are included at Harivillu?
-    a: A rope adventure course with about 10 activities, cycling and a short trek, plus outdoor sports and indoor games. All are included in the price.
-  - q: What time is check-in and check-out?
-    a: 'Check-in time: Contact us on WhatsApp to confirm. Check-out is at 11 am on Sunday.'
-  - q: Is there a movie screening every time?
-    a: It runs at night when the weather allows.
-  - q: Where is the campsite, and how do I get there?
-    a: 'You travel to the campsite on your own; there is no transport from Hyderabad. The campsite is at Harivillu Resort, Ananthagiri Hills, Vikarabad. Self-drive (about 80 km, 2 to 2.5 hours), or train/bus to Vikarabad and an auto or cab.'
+  - q: Which adventure activities come with the Harivillu camp?
+    a: The price covers the rope course (about 10 activities), cycling and a short trek, together with outdoor sports and indoor games. None of them cost extra.
+  - q: When is check-in and check-out at Harivillu?
+    a: 'Check-in time: Contact us on WhatsApp to confirm. You check out at 11 am on Sunday.'
+  - q: Is the movie shown every Saturday?
+    a: The open-air screening happens at night whenever the weather allows.
+  - q: How do I get to Harivillu Resort?
+    a: 'On your own: there is no transport from Hyderabad. The resort is in the Ananthagiri Hills near Vikarabad, about 80 km and 2 to 2.5 hours away by road. You can also take a train or bus to Vikarabad and an auto or cab from there.'
+  - q: Can couples book this camp?
+    a: Married couples can. The resort does not permit unmarried couples; this is the resort's own rule.
   - q: How do I book?
-    a: Message HCC on WhatsApp (+91 81793 21382) with your date and number of guests.
+    a: Send us your date and number of guests on WhatsApp (+91 81793 21382) and we will confirm availability.
 photos: [tents, campfire, ananthagiri]
 compare:
   bestFor: Adventure activities
@@ -90,6 +92,6 @@ compare:
 chooser: Keep busy all afternoon with a rope course of about 10 activities, cycling and a movie night.
 ---
 
-An activity-packed night in the Ananthagiri Hills. Harivillu Resort pairs two-person tents with a rope adventure course of about ten activities, cycling and a short trek. The evening winds down with music, a bonfire and an open-air movie when the weather allows.
+Pick Harivillu if you want to spend the afternoon doing things rather than sitting around. The resort's rope course has roughly ten activities, and the package also includes cycling, a short trek and a full set of games, from sand volleyball to carrom. After dark the pace drops: music, a bonfire and, on clear nights, a film shown in the open.
 
-It suits groups who want to keep busy from check-in to dinner. Meals are included. Transport is on your own: about two hours from Hyderabad by road, or by train or bus to Vikarabad.
+Groups of friends, families and office teams get the most out of it. You sleep in two-person tents, and tea, dinner and breakfast are included. Getting there is up to you: about two hours by road from Hyderabad, or a train or bus to Vikarabad.

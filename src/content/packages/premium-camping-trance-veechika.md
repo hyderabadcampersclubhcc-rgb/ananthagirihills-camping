@@ -3,7 +3,7 @@ title: Premium Camping in Ananthagiri Hills
 seoTitle: Premium Camping at Trance Veechika, Ananthagiri Hills | ₹2,999
 seoDescription: Tents on a private resort campsite with a pool, sports, bonfire and a guided 6 am sunrise trek. Saturdays, 1 night / 2 days, ₹2,999 per person.
 order: 4
-summary: Premium tents with a pool, sports, bonfire and a guided sunrise trek in the Ananthagiri forest.
+summary: Tents on a private campsite at Trance Veechika Resort, with an afternoon pool session, evening sports, a bonfire and a guided 6 am sunrise trek.
 price: 2999
 advance: 500
 tags: [Premium camping, Meals, Pool]
@@ -18,20 +18,20 @@ returns: Check out at 11:00 am on Sunday and head back on your own
 stay:
   tent: Tent, 2 or 3 sharing
   washroom: Common washroom
-  description: Two- or three-person camping tents with ground bedding, on a private campsite at the resort.
+  description: Tents for two or three people with ground bedding, set on the resort's own private campsite.
 suitableFor: [Couples, Groups of friends, Families]
 highlights:
-  - Swimming pool (4 to 6 pm)
-  - Sand volleyball and a mini cricket box (4 to 9 pm)
+  - Pool time from 4 to 6 pm
+  - Sand volleyball and a mini cricket box, open from 4 to 9 pm
   - Table tennis, badminton and carrom
-  - Evening bonfire
-  - Guided sunrise trek at 6 am through the Ananthagiri forest
+  - A bonfire once it gets dark
+  - A guided walk through the Ananthagiri forest at sunrise, starting 6 am
 itinerary:
-  - title: Pool, games and bonfire
-    text: 'Check in and have hi-tea (check-in time: Contact us on WhatsApp to confirm.) Pool from 4 to 6 pm, sand volleyball and the mini cricket box until 9 pm, and indoor games any time. A bonfire after dark, then dinner. Rain dance: Contact us on WhatsApp to confirm.'
+  - title: Afternoon pool, evening games, night bonfire
+    text: 'Check in and start with hi-tea (check-in time: Contact us on WhatsApp to confirm.) The pool is yours from 4 to 6 pm; sand volleyball and the mini cricket box stay open until 9 pm, and the indoor games are available throughout. After dark there is a bonfire, then dinner. Rain dance: Contact us on WhatsApp to confirm.'
     meals: Snacks, Dinner
-  - title: Sunrise trek and check-out
-    text: A guided sunrise trek through the Ananthagiri forest trails at 6 am, breakfast, free time, and check-out at 11 am.
+  - title: Sunrise in the forest
+    text: At 6 am a guide leads the sunrise trek along the Ananthagiri forest trails. Back at camp there is breakfast and some free time before check-out at 11 am.
     meals: Breakfast
 meals:
   - name: Hi-tea
@@ -41,28 +41,28 @@ meals:
   - name: Breakfast
     detail: 'After the sunrise trek. Menu: Contact us on WhatsApp to confirm.'
 included:
-  - Tent stay, 2 or 3 sharing, with ground bedding
+  - A night in a tent for 2 or 3 people, with ground bedding
   - Hi-tea, dinner and breakfast
-  - Swimming pool
-  - Sand volleyball, mini cricket box and indoor games
-  - Evening bonfire
-  - Guided sunrise trek
+  - The swimming pool session
+  - Sand volleyball, the mini cricket box and indoor games
+  - The evening bonfire
+  - The guided sunrise trek
 notIncluded:
-  - Transport to and from the campsite
-  - Adventure rope course activities
-  - Food, drinks or snacks beyond the included meals
-  - Anything not listed under inclusions
+  - Travel to and from the resort
+  - The adventure rope course
+  - Any food, drink or snacks beyond the meals listed
+  - Anything not named in the included list
 carry:
   - Government photo ID
-  - A change of clothes and comfortable shoes
-  - A light jacket for the night
-  - Torch, toiletries and any personal medicines
+  - Comfortable shoes and a spare set of clothes
+  - A light jacket for the early-morning trek
+  - A torch, your toiletries and any medicines you take
 important:
-  - Transport to the campsite is not included. Self-drive, or reach Vikarabad by train or bus and take an auto or cab.
-  - Carry a valid government photo ID for every guest; it is checked at check-in.
-  - Activities depend on the weather and may change for safety.
-  - Check availability on WhatsApp before you travel; the camp runs on Saturdays with check-out on Sunday.
-  - Bring swimwear and an extra set of clothes for the pool.
+  - There is no transport from Hyderabad. Drive down, or take a train or bus to Vikarabad and an auto or cab from there.
+  - Every guest needs a valid government photo ID, which is checked when you check in.
+  - Activities depend on the weather and can change for safety reasons.
+  - The camp runs on Saturday nights with check-out on Sunday. Confirm your date on WhatsApp before you set off.
+  - Pack swimwear and a dry change of clothes for the pool.
 payment:
   - 'Check-in time: Contact us on WhatsApp to confirm.'
   - 'Rain dance: Contact us on WhatsApp to confirm.'
@@ -73,16 +73,18 @@ payment:
   - 'Group size: Contact us on WhatsApp to confirm.'
   - 'Safety arrangements: Contact us on WhatsApp to confirm.'
 faqs:
-  - q: What makes this the premium option?
-    a: 'A private campsite with a swimming pool, sports, a bonfire and a guided sunrise trek, all included in the price. Rain dance: Contact us on WhatsApp to confirm.'
-  - q: What time does the sunrise trek start?
-    a: At 6 am on Sunday, before breakfast.
-  - q: What time is check-in and check-out?
+  - q: What do you get for the higher price at Trance Veechika?
+    a: 'A private campsite inside the resort, a pool session, evening sports, a bonfire and a guided sunrise trek, all in the one price. Rain dance: Contact us on WhatsApp to confirm.'
+  - q: When does the sunrise trek start?
+    a: At 6 am on Sunday, before breakfast. A guide leads the group along the forest trails.
+  - q: What are the check-in and check-out times?
     a: 'Check-in time: Contact us on WhatsApp to confirm. Check-out is at 11 am on Sunday.'
-  - q: Where is the campsite, and how do I get there?
-    a: 'You travel to the campsite on your own; there is no transport from Hyderabad. The campsite is at Trance Veechika Resort, Ananthagiri Hills, Vikarabad. Self-drive (about 80 km, 2 to 2.5 hours), or train/bus to Vikarabad and an auto or cab.'
+  - q: How do I get to Trance Veechika Resort?
+    a: 'On your own: there is no transport from Hyderabad. The resort is in the Ananthagiri Hills near Vikarabad, about 80 km and 2 to 2.5 hours by road, or you can take a train or bus to Vikarabad and an auto or cab from there.'
+  - q: Is the rope course included here?
+    a: No. The adventure rope course is not part of this package. If rope activities matter to you, look at Harivillu (a rope course of about 10 activities) or Sarpanpally Lake (an adventure rope).
   - q: How do I book?
-    a: Message HCC on WhatsApp (+91 81793 21382) with your date and number of guests.
+    a: Send us your date and number of guests on WhatsApp (+91 81793 21382) and we will confirm availability.
 photos: [forest-trek, ananthagiri, tents]
 compare:
   bestFor: Pool and sunrise trek
@@ -92,6 +94,6 @@ compare:
 chooser: A pool in the afternoon and a guided 6 am sunrise trek through the forest.
 ---
 
-The most comfortable way to camp at Ananthagiri. You stay in tents on a private campsite at Trance Veechika Resort, with a swimming pool in the afternoon, sports until late evening and a bonfire after dark.
+Trance Veechika is the top-priced of the four camps and the only one with a guided sunrise trek. Your tent is on a private campsite within the resort. The afternoon starts in the pool, the evening carries on with sand volleyball and cricket until 9 pm, and the night ends around a bonfire with dinner.
 
-The highlight is the guided 6 am sunrise trek through the Ananthagiri forest trails, followed by breakfast before check-out.
+The standout is the morning: at 6 am a guide takes the group through the Ananthagiri forest trails as the sun comes up, and breakfast is waiting when you return.

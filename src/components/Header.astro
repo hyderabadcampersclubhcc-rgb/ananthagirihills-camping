@@ -1,4 +1,5 @@
 ---
+import Logo from '@/components/Logo.astro';
 import site from '@/data/site.json';
 import { url } from '@/lib/url';
 import { whatsappLink } from '@/lib/whatsapp';
@@ -15,8 +16,11 @@ const links = [
 <header class="header">
   <div class="wrap header__inner">
     <a class="brand" href={url()}>
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 5 4 27h24L16 5Zm0 8 5.5 14h-11L16 13Z" /></svg>
-      <span>{site.name}</span>
+      <Logo size={44} eager />
+      <span class="brand__text">
+        <span class="brand__name">{site.name}</span>
+        <span class="brand__by">by Hyderabad Campers Club</span>
+      </span>
     </a>
     <nav class="nav" aria-label="Main">
       {links.map(([label, href]) => <a href={href}>{label}</a>)}
@@ -68,11 +72,29 @@ const links = [
     padding: 0.5rem 0;
     min-width: 0;
   }
-  .brand svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    fill: currentColor;
-    flex: none;
+  /* flex-basis 0 lets the name shrink (and wrap) instead of pushing the WhatsApp button onto its own row. */
+  .brand {
+    flex: 1 1 0;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+  }
+  @media (max-width: 420px) {
+    .brand {
+      font-size: 0.86rem;
+    }
+    .brand__by {
+      font-size: 0.66rem;
+    }
+  }
+  .brand__text {
+    display: grid;
+    line-height: 1.15;
+    min-width: 0;
+  }
+  .brand__by {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-muted);
   }
   .header__inner > .btn {
     flex: none;

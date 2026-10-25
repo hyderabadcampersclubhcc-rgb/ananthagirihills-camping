@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import Logo from '@/components/Logo.astro';
 import site from '@/data/site.json';
 import { url } from '@/lib/url';
 import { whatsappLink } from '@/lib/whatsapp';
@@ -11,7 +12,10 @@ const packages = (await getCollection('packages')).sort((a, b) => a.data.order -
 <footer class="footer">
   <div class="wrap footer__grid">
     <div>
-      <p class="footer__brand">{site.name}</p>
+      <div class="footer__logo">
+        <Logo size={64} />
+        <p class="footer__brand">{site.name}</p>
+      </div>
       <p>Overnight camping in the Ananthagiri Hills near Vikarabad, about two hours from Hyderabad. Run by {site.operator}.</p>
       <p>
         <a href={whatsappLink('Hi, I have a question about camping in Ananthagiri Hills.')} target="_blank" rel="noopener">WhatsApp</a>
@@ -55,6 +59,15 @@ const packages = (await getCollection('packages')).sort((a, b) => a.data.order -
   .footer__grid {
     display: grid;
     gap: 2rem;
+  }
+  .footer__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .footer__logo .footer__brand {
+    margin: 0;
   }
   .footer__brand {
     font-weight: 700;

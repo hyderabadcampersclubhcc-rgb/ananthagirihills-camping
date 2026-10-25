@@ -1,0 +1,41 @@
+---
+/**
+ * Official HCC logo (circular badge), the same file and treatment as the HCC website: source used unchanged,
+ * 1×/2×/3× WebP copies, CSS rounds off the square image's black corners.
+ */
+import { Image } from 'astro:assets';
+import logo from '@/assets/brand/hcc-logo.png';
+
+interface Props {
+  /** Display size in CSS px (the badge is square). */
+  size?: number;
+  /** Load immediately (header) instead of lazily (footer). */
+  eager?: boolean;
+}
+
+const { size = 44, eager = false } = Astro.props;
+---
+
+<Image
+  src={logo}
+  alt="Hyderabad Campers Club (HCC) logo"
+  width={size}
+  height={size}
+  densities={[1, 2, 3]}
+  format="webp"
+  quality={90}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+  class="logo"
+  style={`--logo-size:${size}px`}
+/>
+
+<style>
+  .logo {
+    display: block;
+    flex: none;
+    width: var(--logo-size);
+    height: var(--logo-size);
+    border-radius: 50%;
+  }
+</style>

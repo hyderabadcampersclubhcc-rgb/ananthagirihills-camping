@@ -3,7 +3,7 @@ title: Lakeside Camping Near Hyderabad
 seoTitle: Lakeside Camping Near Hyderabad at Sarpanpally Lake | ₹2,000
 seoDescription: Tents on the bank of Sarpanpally Lake near Vikarabad with a bonfire hour, games, live-kitchen meals and a farm visit. Saturdays, ₹2,000 per person.
 order: 3
-summary: 'Lakeside tents at Sarpanpally Lake near Ananthagiri: bonfire, games, live-kitchen meals and a farm visit.'
+summary: Sleep in a tent right on the bank of Sarpanpally Lake, with a bonfire hour, lakeside games, live-kitchen meals and a morning farm visit.
 price: 2000
 advance: 500
 tags: [Lakeside, Meals, Bonfire]
@@ -18,19 +18,19 @@ returns: Check out at 11:00 am on Sunday and head back on your own
 stay:
   tent: Tent, 2 sharing
   washroom: Shared washroom
-  description: Two-person tents on the bank of Sarpanpally Lake, with shared washrooms.
+  description: Tents for two pitched along the lake bank, with shared washrooms nearby.
 suitableFor: [Groups of friends, Families, Couples]
 highlights:
-  - Tents on the bank of Sarpanpally Lake
-  - An hour of bonfire in the evening (weather permitting)
+  - Your tent is on the bank of Sarpanpally Lake
+  - A one-hour bonfire in the evening, weather permitting
   - Beach volleyball, box cricket, box football, an adventure rope and indoor games
-  - Organic farm and a small petting zoo
+  - A morning visit to the organic farm and its small petting zoo
 itinerary:
-  - title: Lakeside check-in and bonfire
-    text: 'Check in at the lakeside tents (check-in time: Contact us on WhatsApp to confirm.) High tea from 5 to 6 pm, games by the water, then an hour of bonfire if the weather allows. Dinner (veg or non-veg) from 8 to 10 pm.'
+  - title: Evening on the lake bank
+    text: 'Check in at your lakeside tent (check-in time: Contact us on WhatsApp to confirm.) High tea is served from 5 to 6 pm. Spend the evening on games by the water, then gather for an hour of bonfire if the weather allows. Dinner, veg or non-veg, runs from 8 to 10 pm.'
     meals: Snacks, Dinner
-  - title: Breakfast by the lake
-    text: Breakfast from 7 to 10 am, a walk to the organic farm and petting zoo, and check-out at 11 am.
+  - title: Lake views at breakfast, then the farm
+    text: Eat breakfast any time from 7 to 10 am, walk over to the organic farm and petting zoo, and check out at 11 am.
     meals: Breakfast
 meals:
   - name: High tea
@@ -40,28 +40,28 @@ meals:
   - name: Breakfast
     detail: '7–10 am. Menu: Contact us on WhatsApp to confirm.'
 included:
-  - Lakeside tent stay, 2 sharing
-  - High tea, dinner and breakfast (veg or non-veg), from a live kitchen
-  - One hour of bonfire (weather permitting)
-  - Outdoor games (beach volleyball, box cricket, box football, adventure rope) and indoor games
-  - Organic farm and petting zoo visit
+  - A night in a two-person tent by the lake
+  - High tea, dinner and breakfast from the live kitchen, veg or non-veg
+  - A one-hour bonfire (weather permitting)
+  - Beach volleyball, box cricket, box football, the adventure rope and indoor games
+  - The organic farm and petting zoo visit
 notIncluded:
-  - Transport to and from the campsite
+  - Travel to and from the campsite
   - 'Optional paid activities and extras at the campsite: Contact us on WhatsApp to confirm.'
-  - Extra food and drinks
-  - Anything not listed under inclusions
+  - Any food or drink beyond the meals listed
+  - Anything not named in the included list
 carry:
   - Government photo ID
-  - A change of clothes and comfortable shoes
-  - A light jacket for the night
-  - Torch, toiletries and any personal medicines
+  - Comfortable shoes and a spare set of clothes
+  - A light jacket for the evening by the water
+  - A torch, your toiletries and any medicines you take
 important:
-  - Transport to the campsite is not included. Self-drive, or reach Vikarabad by train or bus and take an auto or cab.
-  - Carry a valid government photo ID for every guest; it is checked at check-in.
-  - Activities depend on the weather and may change for safety.
-  - Check availability on WhatsApp before you travel; the camp runs on Saturdays with check-out on Sunday.
-  - Outside food, alcohol and hazardous items are not allowed; guests under the influence may be refused activities.
-  - Some activities have age, height or weight limits.
+  - There is no transport from Hyderabad. Drive down, or take a train or bus to Vikarabad and an auto or cab from there.
+  - Every guest needs a valid government photo ID, which is checked when you check in.
+  - Activities depend on the weather and can change for safety reasons.
+  - The camp runs on Saturday nights with check-out on Sunday. Confirm your date on WhatsApp before you set off.
+  - Do not bring outside food, alcohol or anything hazardous. Guests who are under the influence may not be allowed on activities.
+  - Some activities have limits on age, height or weight.
   - 'Optional paid activities at the campsite and their charges: Contact us on WhatsApp to confirm.'
 payment:
   - 'Check-in time: Contact us on WhatsApp to confirm.'
@@ -73,16 +73,18 @@ payment:
   - 'Group size: Contact us on WhatsApp to confirm.'
   - 'Safety arrangements: Contact us on WhatsApp to confirm.'
 faqs:
-  - q: Where exactly is the Sarpanpally Lake campsite?
-    a: On the bank of Sarpanpally Lake at Godamguda village, Vikarabad, about 80 to 90 km from Hyderabad.
-  - q: Are all activities included?
-    a: 'The outdoor and indoor games, the bonfire hour and the farm visit are included. Optional paid activities at the campsite and their charges: Contact us on WhatsApp to confirm.'
-  - q: What time is check-in and check-out?
+  - q: Where is the Sarpanpally Lake campsite?
+    a: It sits on the lake bank at Godamguda village in Vikarabad district, roughly 80 to 90 km from Hyderabad.
+  - q: Is everything at the lakeside camp included?
+    a: 'The games, the bonfire hour and the farm visit are all part of the price. Optional paid activities at the campsite and their charges: Contact us on WhatsApp to confirm.'
+  - q: What are the check-in and check-out times?
     a: 'Check-in time: Contact us on WhatsApp to confirm. Check-out is at 11 am on Sunday.'
-  - q: Where is the campsite, and how do I get there?
-    a: 'You travel to the campsite on your own; there is no transport from Hyderabad. Self-drive (about 80 km, 2 to 2.5 hours), or train/bus to Vikarabad and an auto or cab.'
+  - q: How do I get to Sarpanpally Lake from Hyderabad?
+    a: 'There is no transport from Hyderabad, so you travel on your own: about 2 to 2.5 hours by car or bike, or a train or bus to Vikarabad and then an auto or cab.'
+  - q: Is the food veg or non-veg?
+    a: Dinner and breakfast come from a live kitchen, and you can choose veg or non-veg.
   - q: How do I book?
-    a: Message HCC on WhatsApp (+91 81793 21382) with your date and number of guests.
+    a: Send us your date and number of guests on WhatsApp (+91 81793 21382) and we will confirm availability.
 photos: [ananthagiri, campfire, tents]
 compare:
   bestFor: Camping by the water
@@ -92,6 +94,6 @@ compare:
 chooser: Wake up by the water, with tents on the lake bank, a bonfire hour and a farm visit.
 ---
 
-Wake up beside the water: this campsite sits on the bank of Sarpanpally Lake at Godamguda village, a short drive from the Ananthagiri Hills. Evenings bring high tea, an hour around the bonfire and a live-kitchen dinner. Mornings start with breakfast by the lake and a walk to the organic farm and petting zoo.
+If you want water instead of woods, this is the one. The campsite is on the bank of Sarpanpally Lake at Godamguda village, close to the Ananthagiri Hills, and the tents face the lake. Evenings are for high tea, games by the water and an hour around the bonfire, followed by a hot dinner from the live kitchen.
 
-The outdoor and indoor games are included. For optional paid activities at the campsite and their charges, Contact us on WhatsApp to confirm.
+In the morning you can take your time over breakfast before walking to the organic farm and its small petting zoo. The games, the bonfire and the farm visit are included; for optional paid activities at the campsite and their charges, Contact us on WhatsApp to confirm.

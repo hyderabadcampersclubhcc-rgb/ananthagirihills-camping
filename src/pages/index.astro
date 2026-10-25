@@ -14,33 +14,54 @@ const packages = (await getCollection('packages')).sort((a, b) => a.data.order -
 const from = Math.min(...packages.map((p) => p.data.price));
 
 const night = [
-  ['Arrive in the afternoon', 'Check-in is in the afternoon; the time depends on the campsite. For your campsite, Contact us on WhatsApp to confirm. You reach the campsite yourself.'],
-  ['Evening', 'Tea and snacks, the campsite’s activities, a bonfire or campfire after dark, then dinner.'],
-  ['Night', 'Tents for 2 or 3 people, depending on the campsite.'],
-  ['Morning', 'Breakfast (and a sunrise trek at Trance Veechika), then check-out at 11 am.'],
+  ['Arrive in the afternoon', 'Make your own way to the campsite and check in during the afternoon. The exact time varies by campsite; for yours, Contact us on WhatsApp to confirm.'],
+  ['Play until dark', 'Evening tea and snacks, then the campsite’s activities: a pool, a rope course, lakeside games or sports, depending on where you stay.'],
+  ['Fire, dinner and a tent', 'A bonfire or campfire once it is dark, dinner, and a night in a tent shared by 2 or 3 people.'],
+  ['Breakfast and home', 'Breakfast in the morning (Trance Veechika adds a 6 am sunrise trek), and check-out at 11 am.'],
+];
+
+const audiences = [
+  ['Couples', 'Budget camping, Sarpanpally Lake and Trance Veechika all list couples among their guests. Harivillu Resort does not permit unmarried couples; that is the resort’s own rule.'],
+  ['Families and first-timers', 'All four are organised campsites with tents, meals and washrooms, so you do not need any camping gear or experience. Children’s policy: Contact us on WhatsApp to confirm.'],
+  ['Friends and solo travellers', 'Prices are per person, so it costs the same whether you come alone or with a group. The budget camp is the one that lists solo travellers.'],
+  ['Office groups', 'Harivillu’s rope course, cycling and team games suit office outings. Group size: Contact us on WhatsApp to confirm.'],
+  ['Night camping', 'Every package is an overnight stay: an evening of activities, a fire after dark and a night in a tent. Harivillu, Sarpanpally Lake and Trance Veechika run on Saturday nights.'],
 ];
 
 const faqs = [
-  { q: 'Where can I go camping near Hyderabad?', a: 'Our camps are in the Ananthagiri Hills near Vikarabad, about 80 km from Hyderabad: budget camping, Harivillu Resort, the lakeside campsite at Sarpanpally Lake, and Trance Veechika Resort.' },
-  { q: 'How much does camping near Hyderabad cost?', a: "One price per person for a night with meals: ₹1,600 for budget camping, ₹2,000 at Harivillu Resort, ₹2,000 at Sarpanpally Lake and ₹2,999 for premium camping at Trance Veechika. Each camp page lists exactly what's included." },
-  { q: 'Is transport included?', a: 'No. You reach the campsite yourself: drive (about 2 to 2.5 hours), or take a train or bus to Vikarabad and an auto or cab from there.' },
-  { q: 'Are the tents shared?', a: 'Yes. Tents are for 2 or 3 people, depending on the campsite. Ask us on WhatsApp if you have a specific request.' },
-  { q: 'What is included in a camping night?', a: 'At all four campsites: a tent for the night, evening tea, dinner and breakfast, and a bonfire or campfire. Activities differ by campsite, from a pool and DJ night to a rope course, lakeside games or a sunrise trek.' },
-  { q: 'When is the best time to camp near Hyderabad?', a: 'July to February is the best time for the Ananthagiri Hills: green after the monsoon, with cooler nights. Harivillu, Sarpanpally Lake and Trance Veechika run on Saturdays; check availability for any date with us on WhatsApp.' },
-  { q: 'Can I go camping near Hyderabad without a car?', a: 'Yes. Take the 12702 from Nampally or the 12732 from Secunderabad to Vikarabad, or a TSRTC bus, then an auto or cab to the campsite.' },
-  { q: 'Is camping suitable for families and first-timers?', a: 'Yes. These are organised campsites with tents, meals and washrooms, not wild camping.' },
-  { q: 'Which Ananthagiri campsites have a swimming pool?', a: 'Budget camping (pool open 5 to 10 pm) and Trance Veechika (pool open 4 to 6 pm).' },
-  { q: 'Is there lakeside camping near Hyderabad?', a: 'Yes. The Sarpanpally Lake campsite at Godamguda village, near Vikarabad, has tents on the bank of the lake, about 80 to 90 km from Hyderabad.' },
-  { q: 'What time is check-in and check-out?', a: 'Check-in is at 4 pm at the budget camp. Check-in time at Harivillu, Sarpanpally Lake and Trance Veechika: Contact us on WhatsApp to confirm. Check-out is at 11 am the next morning at all four.' },
+  { q: 'Where can I go camping near Hyderabad?', a: 'In the Ananthagiri Hills near Vikarabad, roughly 80 km west of the city. We offer four campsites there: the budget camp, Harivillu Resort, Sarpanpally Lake and Trance Veechika Resort.' },
+  { q: 'How much does camping near Hyderabad cost?', a: 'Prices are per person for one night including meals: ₹1,600 for the budget camp, ₹2,000 at Harivillu Resort, ₹2,000 at Sarpanpally Lake and ₹2,999 at Trance Veechika. Each package page lists what that price covers.' },
+  { q: 'Is transport included?', a: 'No, at all four campsites you travel on your own. It is about 2 to 2.5 hours by road, or you can take a train or bus to Vikarabad and an auto or cab for the last stretch.' },
+  { q: 'Will I share a tent?', a: 'Yes. Depending on the campsite, tents take 2 or 3 people. If you have a particular request, ask us on WhatsApp.' },
+  { q: 'What does a camping night include?', a: 'Everywhere: a tent for the night, evening tea, dinner, breakfast and a bonfire or campfire. The activities are what differ, from a pool and Saturday DJ to a rope course, lakeside games or a sunrise trek.' },
+  { q: 'When is the best time to camp near Hyderabad?', a: 'From July to February, when the Ananthagiri Hills are green after the monsoon and the nights are cooler. Harivillu, Sarpanpally Lake and Trance Veechika run on Saturdays; for any date, check availability with us on WhatsApp.' },
+  { q: 'Can I go camping near Hyderabad without a car?', a: 'Yes. Trains 12702 (from Nampally) and 12732 (from Secunderabad) and TSRTC buses go to Vikarabad, and an auto or cab takes you on to the campsite.' },
+  { q: 'Is camping suitable for families and first-timers?', a: 'Yes. These are organised campsites with tents, meals and washrooms, not wild camping, so you need no gear or experience.' },
+  { q: 'Which Ananthagiri campsites have a swimming pool?', a: 'Two of them: the budget camp, where the pool is open from 5 to 10 pm, and Trance Veechika, where it is open from 4 to 6 pm.' },
+  { q: 'Is there lakeside camping near Hyderabad?', a: 'Yes. At Sarpanpally Lake, near Godamguda village in Vikarabad, the tents stand on the lake bank, roughly 80 to 90 km from Hyderabad.' },
+  { q: 'What time is check-in and check-out?', a: 'The budget camp checks in at 4 pm. Check-in time at Harivillu, Sarpanpally Lake and Trance Veechika: Contact us on WhatsApp to confirm. All four check out at 11 am the next morning.' },
   { q: 'How do I book, and is the advance refundable?', a: 'Send an enquiry on WhatsApp with your date and number of guests. Once we confirm availability, a ₹500 advance per person reserves your place; the advance is non-refundable. The cancellation & refund policy has the details.' },
-  { q: 'Are there extra charges at the campsites?', a: 'The price covers what each campsite page lists as included. Food and drinks beyond the included meals are extra everywhere. Optional paid activities at Sarpanpally Lake and their charges: Contact us on WhatsApp to confirm.' },
+  { q: 'Are there extra charges at the campsites?', a: 'The price covers what each package page lists as included; food and drinks beyond the included meals cost extra everywhere. Optional paid activities at Sarpanpally Lake and their charges: Contact us on WhatsApp to confirm.' },
 ];
+
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Ananthagiri Hills camping packages',
+  itemListElement: packages.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: p.data.title,
+    url: new URL(url(`packages/${p.id}/`), Astro.site).href,
+  })),
+};
 ---
 
 <BaseLayout
-  title="Camping near Hyderabad | Ananthagiri Hills camping from ₹1,600"
-  description="Overnight camping in the Ananthagiri Hills near Vikarabad, about two hours from Hyderabad. Four campsites with tents, meals and bonfire, from ₹1,600 per person."
+  title="Camping near Hyderabad: Ananthagiri Hills Packages from ₹1,600"
+  description="Compare 4 overnight camps in the Ananthagiri Hills, about 2 hours from Hyderabad: pool, adventure, lakeside and premium. Tents, meals and bonfire from ₹1,600."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(itemList)} />
   <main>
     <section class="hero">
       <Photo name="campfire" sizes="100vw" loading="eager" class="hero__photo" />
@@ -48,9 +69,8 @@ const faqs = [
         <p class="hero__kicker">Ananthagiri Hills · Vikarabad</p>
         <h1>Camping near Hyderabad</h1>
         <p class="hero__lead">
-          Overnight camping in the Ananthagiri Hills near Vikarabad, about two hours from Hyderabad. Choose from four campsites: a pool
-          and Saturday DJ night, an activity camp with a rope course, lakeside tents at Sarpanpally Lake, or a premium camp with a
-          sunrise trek.
+          Spend a night in a tent in the forested Ananthagiri Hills, around two hours' drive from Hyderabad. Pick the camp that fits you:
+          a pool with a Saturday DJ, a rope course and cycling, tents on a lake bank, or a private campsite with a guided sunrise trek.
         </p>
         <ul class="hero__facts">
           <li><strong>4</strong> campsites</li>
@@ -67,8 +87,8 @@ const faqs = [
     </section>
 
     <section class="wrap section" id="packages" aria-labelledby="packages-h">
-      <h2 id="packages-h">Four campsites in the Ananthagiri Hills</h2>
-      <p class="lead">Each campsite has one price per person, including the tent, evening tea, dinner and breakfast. You travel to the campsite on your own.</p>
+      <h2 id="packages-h">Ananthagiri Hills camping packages and prices</h2>
+      <p class="lead">One price per person at each campsite, covering your tent, evening tea, dinner and breakfast. Getting there is up to you.</p>
       <div class="grid">{packages.map((p) => <PackageCard pkg={p} />)}</div>
     </section>
 
@@ -95,8 +115,22 @@ const faqs = [
       </ul>
     </section>
 
+    <section class="wrap section" aria-labelledby="who-h">
+      <h2 id="who-h">Camping for couples, families, friends and office groups</h2>
+      <ul class="who">
+        {
+          audiences.map(([title, text]) => (
+            <li>
+              <h3>{title}</h3>
+              <p><Rich text={text} topic={`camping for ${title.toLowerCase()}`} /></p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
     <section class="wrap section" aria-labelledby="night-h">
-      <h2 id="night-h">How a camping night works</h2>
+      <h2 id="night-h">How a night of camping near Hyderabad works</h2>
       <ol class="steps">
         {
           night.map(([title, text], i) => (
@@ -269,6 +303,32 @@ const faqs = [
   .split p {
     color: var(--color-muted);
     margin: 0 0 1rem;
+  }
+  .who {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+  .who li {
+    border-left: 4px solid var(--color-accent);
+    background: var(--color-surface);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 0.9rem 1.1rem;
+  }
+  .who h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+  }
+  .who p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+  @media (min-width: 760px) {
+    .who {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   .choose {
     list-style: none;
