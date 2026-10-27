@@ -6,9 +6,9 @@ package page automatically (the first photo is also used on the package card).
 | Folder | Package |
 |---|---|
 | `budget-camping-pool-music/` | Budget Camping in Ananthagiri Hills with Pool & Music |
-| `adventure-camping-harivillu/` | Premium Adventure Camping (Harivillu Resort) |
+| `adventure-camping/` | Premium Adventure Camping |
 | `lakeside-camping-sarpanpally/` | Lakeside Camping (Sarpanpally Lake) |
-| `premium-camping-trance-veechika/` | Premium Camping (Trance Veechika Resort) |
+| `premium-camping/` | Premium Camping |
 
 - JPG or WebP, landscape, at least 1600 px wide. Only real photos of that campsite.
 - Name files by what they show, numbered for order: `01-tents-at-dusk.jpg`, `02-inside-a-tent.jpg`,

@@ -1,15 +1,15 @@
 ---
 title: Premium Camping in Ananthagiri Hills
-seoTitle: Premium Camping at Trance Veechika, Ananthagiri Hills | ₹2,999
+seoTitle: Premium Camping in Ananthagiri Hills with Pool & Sunrise Trek | ₹2,999
 seoDescription: Tents on a private resort campsite with a pool, sports, bonfire and a guided 6 am sunrise trek. Saturdays, 1 night / 2 days, ₹2,999 per person.
 order: 4
-summary: Tents on a private campsite at Trance Veechika Resort, with an afternoon pool session, evening sports, a bonfire and a guided 6 am sunrise trek.
+summary: Tents on a private resort campsite in the Ananthagiri Hills, with an afternoon pool session, evening sports, a bonfire and a guided 6 am sunrise trek.
 price: 2999
 advance: 500
 tags: [Premium camping, Meals, Pool]
 runs: Saturdays (check availability on WhatsApp)
-campsite: Trance Veechika Resort, Ananthagiri Hills, Vikarabad
-campsiteShort: Trance Veechika Resort
+campsite: Private resort campsite, Ananthagiri Hills, Vikarabad
+campsiteShort: Premium campsite, Ananthagiri Hills
 location: About 80 km from Hyderabad
 checkIn: Contact us on WhatsApp to confirm.
 checkOut: 11:00 am (Sunday)
@@ -73,16 +73,16 @@ payment:
   - 'Group size: Contact us on WhatsApp to confirm.'
   - 'Safety arrangements: Contact us on WhatsApp to confirm.'
 faqs:
-  - q: What do you get for the higher price at Trance Veechika?
+  - q: What do you get for the higher price at the premium camp?
     a: 'A private campsite inside the resort, a pool session, evening sports, a bonfire and a guided sunrise trek, all in the one price. Rain dance: Contact us on WhatsApp to confirm.'
   - q: When does the sunrise trek start?
     a: At 6 am on Sunday, before breakfast. A guide leads the group along the forest trails.
   - q: What are the check-in and check-out times?
     a: 'Check-in time: Contact us on WhatsApp to confirm. Check-out is at 11 am on Sunday.'
-  - q: How do I get to Trance Veechika Resort?
+  - q: How do I get to the premium campsite?
     a: 'On your own: there is no transport from Hyderabad. The resort is in the Ananthagiri Hills near Vikarabad, about 80 km and 2 to 2.5 hours by road, or you can take a train or bus to Vikarabad and an auto or cab from there.'
   - q: Is the rope course included here?
-    a: No. The adventure rope course is not part of this package. If rope activities matter to you, look at Harivillu (a rope course of about 10 activities) or Sarpanpally Lake (an adventure rope).
+    a: No. The adventure rope course is not part of this package. If rope activities matter to you, look at the adventure camp (a rope course of about 10 activities) or Sarpanpally Lake (an adventure rope).
   - q: How do I book?
     a: Send us your date and number of guests on WhatsApp (+91 81793 21382) and we will confirm availability.
 photos: [forest-trek, ananthagiri, tents]
@@ -94,6 +94,6 @@ compare:
 chooser: A pool in the afternoon and a guided 6 am sunrise trek through the forest.
 ---
 
-Trance Veechika is the top-priced of the four camps and the only one with a guided sunrise trek. Your tent is on a private campsite within the resort. The afternoon starts in the pool, the evening carries on with sand volleyball and cricket until 9 pm, and the night ends around a bonfire with dinner.
+This is the top-priced of the four camps and the only one with a guided sunrise trek. Your tent is on a private campsite within the resort. The afternoon starts in the pool, the evening carries on with sand volleyball and cricket until 9 pm, and the night ends around a bonfire with dinner.
 
 The standout is the morning: at 6 am a guide takes the group through the Ananthagiri forest trails as the sun comes up, and breakfast is waiting when you return.
