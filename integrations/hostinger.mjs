@@ -33,8 +33,19 @@ export default function hostinger({ productionHost, redirects = [] }) {
         const out = fileURLToPath(dir);
         const host = site.hostname;
         const isProd = host === productionHost;
+        // Hostinger serves the subdomain from <parent>/public_html/<folder>, so the same files are also
+        // reachable as https://<parent>/<folder>/…. Send those requests away: the folder root to the parent
+        // site's camping hub (its old WordPress /camping/ redirect), everything else to this site.
+        const parentHost = productionHost.split('.').slice(1).join('.');
+        const otherHost = `RewriteCond %{HTTP_HOST} !^(www\\.)?${escapeRegex(productionHost)}$ [NC]`;
         const canonical = isProd
           ? [
+              '# Reached through the parent domain',
+              otherHost,
+              `RewriteRule ^$ https://${parentHost}/camping-near-hyderabad/ [L,R=301]`,
+              otherHost,
+              `RewriteRule ^(.+)$ https://${productionHost}/$1 [L,R=301]`,
+              '',
               '# HTTPS + canonical host (non-www)',
               'RewriteCond %{HTTPS} !=on [OR]',
               `RewriteCond %{HTTP_HOST} ^www\\.${escapeRegex(productionHost)}$ [NC]`,
