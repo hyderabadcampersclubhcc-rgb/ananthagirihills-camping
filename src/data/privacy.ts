@@ -4,6 +4,6 @@
  * Set `approved: true` and `lastUpdated` only after the owner approves the wording.
  */
 export const privacyPolicy = {
-  approved: false,
-  lastUpdated: '25 October 2026',
+  approved: true, // owner approved the wording, 7 Nov 2026
+  lastUpdated: '7 November 2026',
 };
