@@ -11,7 +11,7 @@ runs: Saturdays (check availability on WhatsApp)
 campsite: Wilderness campsite, Sarpanpally Lake, Godamguda village, Vikarabad
 campsiteShort: Sarpanpally Lake
 location: About 80 to 90 km from Hyderabad
-checkIn: Contact us on WhatsApp to confirm.
+checkIn: 4:00 pm
 checkOut: 11:00 am (Sunday)
 gettingThere: Self-drive (about 80 km, 2 to 2.5 hours), or train/bus to Vikarabad and an auto or cab
 returns: Check out at 11:00 am on Sunday and head back on your own
@@ -27,7 +27,7 @@ highlights:
   - A morning visit to the organic farm and its small petting zoo
 itinerary:
   - title: Evening on the lake bank
-    text: 'Check in at your lakeside tent (check-in time: Contact us on WhatsApp to confirm.) High tea is served from 5 to 6 pm. Spend the evening on games by the water, then gather for an hour of bonfire if the weather allows. Dinner, veg or non-veg, runs from 8 to 10 pm.'
+    text: 'Check in at your lakeside tent (check-in at 4 pm). High tea is served from 5 to 6 pm. Spend the evening on games by the water, then gather for an hour of bonfire if the weather allows. Dinner, veg or non-veg, runs from 8 to 10 pm.'
     meals: Snacks, Dinner
   - title: Lake views at breakfast, then the farm
     text: Eat breakfast any time from 7 to 10 am, walk over to the organic farm and petting zoo, and check out at 11 am.
@@ -64,7 +64,7 @@ important:
   - Some activities have limits on age, height or weight.
   - 'Optional paid activities at the campsite and their charges: Contact us on WhatsApp to confirm.'
 payment:
-  - 'Check-in time: Contact us on WhatsApp to confirm.'
+  - Get there about 10 minutes before the 4 pm check-in. If you arrive late, you may miss meals and activities.
   - 'Paid activities at the campsite: Contact us on WhatsApp to confirm.'
   - 'A ₹500 advance payment per person is non-refundable. Balance payment deadline: Contact us on WhatsApp to confirm.'
   - Cancellations and refunds follow the cancellation & refund policy below.
@@ -78,7 +78,7 @@ faqs:
   - q: Is everything at the lakeside camp included?
     a: 'The games, the bonfire hour and the farm visit are all part of the price. Optional paid activities at the campsite and their charges: Contact us on WhatsApp to confirm.'
   - q: What are the check-in and check-out times?
-    a: 'Check-in time: Contact us on WhatsApp to confirm. Check-out is at 11 am on Sunday.'
+    a: 'Check-in is at 4 pm and check-out is at 11 am on Sunday.'
   - q: How do I get to Sarpanpally Lake from Hyderabad?
     a: 'There is no transport from Hyderabad, so you travel on your own: about 2 to 2.5 hours by car or bike, or a train or bus to Vikarabad and then an auto or cab.'
   - q: Is the food veg or non-veg?

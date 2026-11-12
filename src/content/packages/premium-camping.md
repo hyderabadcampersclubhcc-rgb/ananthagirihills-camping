@@ -11,7 +11,7 @@ runs: Saturdays (check availability on WhatsApp)
 campsite: Private resort campsite, Ananthagiri Hills, Vikarabad
 campsiteShort: Premium campsite, Ananthagiri Hills
 location: About 80 km from Hyderabad
-checkIn: Contact us on WhatsApp to confirm.
+checkIn: 4:00 pm
 checkOut: 11:00 am (Sunday)
 gettingThere: Self-drive (about 80 km, 2 to 2.5 hours), or train/bus to Vikarabad and an auto or cab
 returns: Check out at 11:00 am on Sunday and head back on your own
@@ -28,7 +28,7 @@ highlights:
   - A guided walk through the Ananthagiri forest at sunrise, starting 6 am
 itinerary:
   - title: Afternoon pool, evening games, night bonfire
-    text: 'Check in and start with hi-tea (check-in time: Contact us on WhatsApp to confirm.) The pool is yours from 4 to 6 pm; sand volleyball and the mini cricket box stay open until 9 pm, and the indoor games are available throughout. After dark there is a bonfire, then dinner. Rain dance: Contact us on WhatsApp to confirm.'
+    text: 'Check in and start with hi-tea (check-in at 4 pm). The pool is yours from 4 to 6 pm; sand volleyball and the mini cricket box stay open until 9 pm, and the indoor games are available throughout. After dark there is a bonfire, then dinner. Rain dance: Contact us on WhatsApp to confirm.'
     meals: Snacks, Dinner
   - title: Sunrise in the forest
     text: At 6 am a guide leads the sunrise trek along the Ananthagiri forest trails. Back at camp there is breakfast and some free time before check-out at 11 am.
@@ -64,7 +64,7 @@ important:
   - The camp runs on Saturday nights with check-out on Sunday. Confirm your date on WhatsApp before you set off.
   - Pack swimwear and a dry change of clothes for the pool.
 payment:
-  - 'Check-in time: Contact us on WhatsApp to confirm.'
+  - Get there about 10 minutes before the 4 pm check-in. If you arrive late, you may miss meals and activities.
   - 'Rain dance: Contact us on WhatsApp to confirm.'
   - 'A ₹500 advance payment per person is non-refundable. Balance payment deadline: Contact us on WhatsApp to confirm.'
   - Cancellations and refunds follow the cancellation & refund policy below.
@@ -78,7 +78,7 @@ faqs:
   - q: When does the sunrise trek start?
     a: At 6 am on Sunday, before breakfast. A guide leads the group along the forest trails.
   - q: What are the check-in and check-out times?
-    a: 'Check-in time: Contact us on WhatsApp to confirm. Check-out is at 11 am on Sunday.'
+    a: 'Check-in is at 4 pm and check-out is at 11 am on Sunday.'
   - q: How do I get to the premium campsite?
     a: 'On your own: there is no transport from Hyderabad. The resort is in the Ananthagiri Hills near Vikarabad, about 80 km and 2 to 2.5 hours by road, or you can take a train or bus to Vikarabad and an auto or cab from there.'
   - q: Is the rope course included here?

@@ -11,7 +11,7 @@ runs: Saturdays (check availability on WhatsApp)
 campsite: Resort campsite, Ananthagiri Hills, Vikarabad
 campsiteShort: Adventure campsite, Ananthagiri Hills
 location: About 80 km from Hyderabad
-checkIn: Contact us on WhatsApp to confirm.
+checkIn: 4:00 pm
 checkOut: 11:00 am (Sunday)
 gettingThere: Self-drive (about 80 km, 2 to 2.5 hours), or train/bus to Vikarabad and an auto or cab
 returns: Check out at 11:00 am on Sunday and head back on your own
@@ -27,7 +27,7 @@ highlights:
   - Music and a bonfire after dark, with an outdoor movie when the weather is clear
 itinerary:
   - title: Rope course, games and a movie under the sky
-    text: 'Arrive and settle into your two-person tent (check-in time: Contact us on WhatsApp to confirm.) After tea and samosa, head out for the rope course, a cycle ride and a short trek. Until it gets dark there is box cricket, sand volleyball, badminton, table tennis and carrom. The night brings music and a bonfire, an open-air film if the weather holds, and then dinner.'
+    text: 'Arrive and settle into your two-person tent (check-in at 4 pm). After tea and samosa, head out for the rope course, a cycle ride and a short trek. Until it gets dark there is box cricket, sand volleyball, badminton, table tennis and carrom. The night brings music and a bonfire, an open-air film if the weather holds, and then dinner.'
     meals: Snacks, Dinner
   - title: Slow Sunday morning
     text: Have breakfast, use the free time for a last game or a ride on the cycles, and check out by 11 am.
@@ -63,7 +63,7 @@ important:
   - 'Resort rules: no hookah, and keep vehicles off the lawn.'
   - The resort hosting this camp does not allow unmarried couples (this is the resort's own rule).
 payment:
-  - 'Check-in time: Contact us on WhatsApp to confirm.'
+  - Get there about 10 minutes before the 4 pm check-in. If you arrive late, you may miss meals and activities.
   - 'A ₹500 advance payment per person is non-refundable. Balance payment deadline: Contact us on WhatsApp to confirm.'
   - Cancellations and refunds follow the cancellation & refund policy below.
   - 'GST: Contact us on WhatsApp to confirm.'
@@ -74,7 +74,7 @@ faqs:
   - q: Which adventure activities come with this camp?
     a: The price covers the rope course (about 10 activities), cycling and a short trek, together with outdoor sports and indoor games. None of them cost extra.
   - q: When is check-in and check-out at the adventure camp?
-    a: 'Check-in time: Contact us on WhatsApp to confirm. You check out at 11 am on Sunday.'
+    a: 'Check-in is at 4 pm and you check out at 11 am on Sunday.'
   - q: Is the movie shown every Saturday?
     a: The open-air screening happens at night whenever the weather allows.
   - q: How do I get to the adventure campsite?
