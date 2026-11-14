@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import hostinger from './integrations/hostinger.mjs';
 import { PRODUCTION_HOST } from './site.config.mjs';
+import { MAIN_SITE_CANONICAL } from './src/data/main-site-canonical.mjs';
 
 // `||` (not `??`) because GitHub Actions passes unset variables as empty strings.
 const productionHost = process.env.PRODUCTION_HOST || PRODUCTION_HOST;
@@ -18,7 +19,8 @@ export default defineConfig({
   prefetch: { defaultStrategy: 'hover' },
   integrations: [
     mdx(),
-    sitemap({ filter: (page) => !/\/(admin|api|thank-you|preview)(\/|$)/.test(page) }),
+    // Pages whose canonical is on the main site are left out of this site's sitemap.
+    sitemap({ filter: (page) => !/\/(admin|api|thank-you|preview)(\/|$)/.test(page) && !(new URL(page).pathname in MAIN_SITE_CANONICAL) }),
     hostinger({ productionHost }),
   ],
   fonts: [

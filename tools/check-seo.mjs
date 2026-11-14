@@ -5,6 +5,7 @@
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { PRODUCTION_HOST } from '../site.config.mjs';
+import { MAIN_SITE_ORIGIN } from '../src/data/main-site-canonical.mjs';
 
 const dist = path.resolve('dist');
 const production = process.env.PUBLIC_ALLOW_INDEXING === 'true';
@@ -57,12 +58,14 @@ for (const file of pages) {
   if (wantsIndex && !robots.startsWith('index'))
     fail(page, page === 'privacy-policy/index.html' ? 'privacy policy is still a draft: approve it (src/data/privacy.ts) before a production deploy' : `robots is "${robots}" in a production build`);
   if (!production && !robots.startsWith('noindex')) fail(page, `robots is "${robots}" outside production`);
-  if (robots.startsWith('index')) indexable.push(canonical);
+  // Pages that hand their ranking to the main site (src/data/main-site-canonical.mjs) aren't this site's own indexable pages.
+  const toMain = canonical.startsWith(MAIN_SITE_ORIGIN + '/');
+  if (robots.startsWith('index') && !toMain) indexable.push(canonical);
 
   if (!canonical) fail(page, 'missing canonical');
   else {
     const c = new URL(canonical);
-    if (c.origin !== site.origin) fail(page, `canonical ${canonical} is not on ${site.origin}`);
+    if (c.origin !== site.origin && !toMain) fail(page, `canonical ${canonical} is not on ${site.origin}`);
     if (!is404 && !c.pathname.endsWith('/')) fail(page, `canonical ${canonical} has no trailing slash`);
   }
 
